@@ -17,7 +17,7 @@
 
 ##### _$ git clone git@github.com:yuko-fu/jimoguru.git_
 
-####  _$ cd portfolio_
+####  _$ cd jimoguru_
 
 #### _$ bundle install_
 

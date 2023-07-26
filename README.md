@@ -5,7 +5,7 @@
 - ###### rails：6.1.6 
 
 ### 就業Termの技術
-- ###### device機能
+- ###### devise
 - ###### AWS EC2
 
 ### カリキュラム外の技術
@@ -26,7 +26,7 @@
 #### _$ rails s_
 
 ### カタログ設計,テーブル定義書
-##### https://docs.google.com/spreadsheets/d/16-EnuVIHFsquQogHSHujPEXfj4UD6U3k6iv8skIvTE8/edit#gid=2032360665
+##### https://docs.google.com/spreadsheets/d/16-EnuVIHFsquQogHSHujPEXfj4UD6U3k6iv8skIvTE8/edit#gid=873673859
 
 
 

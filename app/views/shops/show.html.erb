@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
+
+<p>
+  <strong>Prefecture:</strong>
+  <%= @shop.prefecture %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @shop.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @shop.longitude %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @shop.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_shop_path(@shop) %> |
+<%= link_to 'Back', shops_path %>

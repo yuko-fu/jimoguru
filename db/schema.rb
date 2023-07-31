@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_27_095434) do
+ActiveRecord::Schema.define(version: 2023_07_31_023047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_menus_on_shop_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "prefecture", null: false
+    t.string "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_shops_on_category_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +54,25 @@ ActiveRecord::Schema.define(version: 2023_07_27_095434) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_votes_on_menu_id"
+    t.index ["shop_id"], name: "index_votes_on_shop_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "menus", "shops"
+  add_foreign_key "shops", "categories"
+  add_foreign_key "votes", "menus"
+  add_foreign_key "votes", "shops"
+  add_foreign_key "votes", "users"
 end

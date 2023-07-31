@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_28_082811) do
+ActiveRecord::Schema.define(version: 2023_07_31_023047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,17 +54,9 @@ ActiveRecord::Schema.define(version: 2023_07_28_082811) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "vote_photos", force: :cascade do |t|
-    t.text "image"
-    t.string "content"
-    t.bigint "vote_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["vote_id"], name: "index_vote_photos_on_vote_id"
   end
 
   create_table "votes", force: :cascade do |t|
@@ -80,7 +72,6 @@ ActiveRecord::Schema.define(version: 2023_07_28_082811) do
 
   add_foreign_key "menus", "shops"
   add_foreign_key "shops", "categories"
-  add_foreign_key "vote_photos", "votes"
   add_foreign_key "votes", "menus"
   add_foreign_key "votes", "shops"
   add_foreign_key "votes", "users"

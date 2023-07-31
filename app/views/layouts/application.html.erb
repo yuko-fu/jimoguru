@@ -11,6 +11,7 @@
   </head>
 
   <body>
+  <%= content_tag(:div, flash[:alert], class: "alert alert-danger") if flash[:alert] %>
     <% if user_signed_in? %>
       <%= link_to "お店検索", shops_path %>
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

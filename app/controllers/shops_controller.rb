@@ -73,6 +73,6 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:name, :prefecture, :address, :latitude, :longitude, :category_id)
+      params.permit(:name, :prefecture, :address, :category_id)
     end
 end

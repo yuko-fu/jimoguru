@@ -10,101 +10,71 @@
       </ul>
     </div>
   <% end %>
+  <div>
+  <%= form_for :@shop, url: { action: :create }, method: :post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "店名を入力してください" %>
+    <br>
+    <%= f.label :prefecture %>
+    <%= f.text_field :prefecture, placeholder: "都道府県を入力してください" %>
+    <br>
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: "住所を入力してください" %>
+    <br>
+    <%= f.label :カテゴリー %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+    <br>
+    <%= f.submit "登録" %>
+    <% end %>
+  </div>
 
-  <div class="content">
-  <div id="map"></div>
-  <style>
-    #map {
-      height: 300px;
-      width: 300px;
-    }
-  </style>
+  <div id="map" style="height: 400px; width: 100%;"></div>
   <script>
+    // Your JavaScript code will go here
     var map;
-    var marker;
 
     function initMap() {
-      const defaultCenter = { lat: 35.6803997, lng:139.7690174 };
-      const mapOptions = {
-        zoom: 10,
-        center: defaultCenter,
-      };
+      // 初期の地図の中心座標を設定
+      var initialLatLng = { lat: 35.6895, lng: 139.6917 }; // 例: 東京の緯度経度
 
-      map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-      map.addListener("click", function (e) {
-        getClickLatLng(e.latLng, map);
-      });
-
-      const addressField = document.getElementById("address");
-      const latHiddenField = document.getElementById("lat");
-      const lngHiddenField = document.getElementById("lng");
-      const service = new google.maps.places.PlacesService(map);
-
-      addressField.addEventListener("change", (e) => {
-        const address = e.target.value;
-        const request = {
-          query: address,
-          fields: ["name", "geometry"],
-        };
-        service.findPlaceFromQuery(request, function (results, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (let i = 0; i < results.length; i++) {
-              const place = results[i];
-              const lat = place.geometry.location.lat();
-              const lng = place.geometry.location.lng();
-              const latLng = { lat: lat, lng: lng };
-              getClickLatLng(latLng, map);
-              latHiddenField.value = lat;
-              lngHiddenField.value = lng;
-            }
-          }
-        });
+      // 地図を作成
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: initialLatLng,
+        zoom: 13 // ズームレベル（1-20の範囲で指定）
       });
     }
 
-    window.addEventListener("DOMContentLoaded", initMap);
+    // Geocoding APIを使用して住所から座標を取得し、地図上にマーカーを追加する関数
+    function addMarker() {
+      var geocoder = new google.maps.Geocoder();
+      var address = document.getElementById('location_address').value;
 
-    function getClickLatLng(latLng, map) {
-      if (marker) {
-        marker.setMap(null);
-      }
-
+      geocoder.geocode({ 'address': address }, function (results, status) {
+        if (status === 'OK') {
+          // 最初の結果を使用（通常、他にも複数の結果が返されることがあります）
+          var location = results[0].geometry.location;
+          // 地図上にマーカーを追加
+          var marker = new google.maps.Marker({
+            map: map,
+            position: location
+          });
+          // マーカーをクリックしたときに情報ウィンドウを表示
+          var infoWindow = new google.maps.InfoWindow({
+            content: address
+          });
+          marker.addListener('click', function () {
+            infoWindow.open(map, marker);
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
     }
-  
 
-function getClickLatLng(latLng, map) {
-  if (marker) {
-    marker.setMap(null);
-  }
-
-  marker = new google.maps.Marker({
-    position: latLng,
-    map: map,
-  });
-
-  map.panTo(latLng);
-
-  document.getElementById("lat").value = latLng.lat();
-  document.getElementById("lng").value = latLng.lng();
-
-  const geocoder = new google.maps.Geocoder();
-  geocoder.geocode({ location: latLng, region: 'JP' }, function (results, status) {
-    if (status === "OK") {
-      if (results[0]) {
-        const address_components = results[0].address_components;
-        const long_name = address_components.map(component => component.long_name);
-        document.getElementById("address").value = long_name.join(' ');
-      } else {
-        console.log("No results found");
-      }
-    } else {
-      console.log("Geocoder failed due to: " + status);
-    }
-  });
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script>
+    // ページがロードされたときに地図を初期化
+    google.maps.event.addDomListener(window, 'load', initMap);
+  </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></>
   
 
   <div class="field">

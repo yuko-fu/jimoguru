@@ -4,6 +4,14 @@ class ShopsController < ApplicationController
   # GET /shops or /shops.json
   def index
     @shops = Shop.all
+    gon.shops = @shops.map do |shop|
+      {
+      id: shop.id,
+      name: shop.name,
+      latitude: shop.latitude,
+      longitude: shop.longitude,
+    }
+    end
   end
 
   # GET /shops/1 or /shops/1.json

@@ -16,7 +16,7 @@
     <%= f.text_field :name, placeholder: "店名を入力してください" %>
     <br>
     <%= f.label :都道府県 %>
-    <%= f.select :prefecture, Shop.prefecture_areas.keys, { prompt: '選択してください' } %>
+    <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください' } %>
     <br>
     <%= f.label :address %>
     <%= f.text_field :address, placeholder: "住所を入力してください" %>
@@ -72,9 +72,10 @@
     }
 
     // ページがロードされたときに地図を初期化
-    google.maps.event.addDomListener(window, 'load', initMap);
+    // google.maps.event.addDomListener(window, 'load', initMap);
   </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" defer></script>
+
 <% end %>  
 
   

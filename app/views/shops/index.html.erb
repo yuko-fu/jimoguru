@@ -4,6 +4,7 @@
 
 <table>
   <thead>
+
     <tr>
       <th>店名</th>
       <th>都道府県</th>
@@ -14,69 +15,105 @@
   </thead>
 
   <tbody>
-  <input id="address" type="textbox" value="" placeholder="地名・地点を入力">
-  <input type="button" value="検索" onclick="codeAddress()">
+  <%= form_with scope: :shop, url: root_path, method: :get, local: true do |f| %>
+    <%= f.label :prefecture, "都道府県" %>
+    <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください', include_blank: true } %>
+    <%= f.label :category_id, "カテゴリー" %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください', include_blank: true } %>
+    <%= f.submit "検索", id: "centerMapOnPrefecture()" %>
+    
+  <% end %>
+  
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.name %></td>
         <td><%= shop.prefecture %></td>
         <td><%= shop.address %></td>
-        <td><%= shop.category_id %></td>
+        <td><%= shop.category.name %></td>
         <td><%= link_to 'Show', shop %></td>
         <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
         <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
       </tr>
     <% end %>
-
-    <div id='map'></div>
-    <style>
-      #map {
-        height: 500px;
-        width: 100%;
-      }
-    </style>
-    <script>
-      var map;
-      var marker = [];
-      var infoWindow = [];
-      // コントローラーで定義したインスタンス変数(@shops)を代入
-      var markerData = gon.shops;
-          
-      function initMapindex() {
-        // マップの初期化
-        map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 9,
-          center: {lat: 35.4550426, lng: 139.6312741}
-        }); 
-      }
-      for (var i = 0; i < markerData.length; i++) {
-        let id = markerData[i]['id']
-
-        // 各スポットの緯度経度を算出
-        markerLatLng = new google.maps.LatLng({
-          lat:  Number(markerData[i]['latitude']),
-          lng:  Number(markerData[i]['longitude'])
-        });
-
-        // 各スポットのマーカーを作成
-        marker[i] = new google.maps.Marker({
-          position: markerLatLng,
-          map: map
-        });
-
-        // 各スポットの吹き出しを作成
-        infoWindow[i] = new google.maps.InfoWindow({
-          // 吹き出しの内容
-          content: `<a href='/flowers/${ id }' class='custom-link'>${ markerData[i]['name'] }<br><img src="${ markerData[i]['image_url'] }" width="100" /></a>`
-        });
-
-        // マーカーにクリックイベント追加
-        markerEvent(i);
-      }
     
-    </script>  
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMapindex" async defer></script>
+ <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+  </style>
 
+  <div id="map"></div>
+  <script>
+    var map;
+    var markers = [];
+    var infoWindows = [];
+    var geocoder;
+
+    // データベースから取得したマーカー情報（例：仮のデータ）
+    var markerData = gon.shops;
+
+    function initMap() {
+      geocoder = new google.maps.Geocoder();
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 9,
+        center: { lat: 35.4550426, lng: 139.6312741 }
+      });
+
+      displayMarkers();
+    }
+
+    function displayMarkers() {
+      markerData.forEach(shop => {
+        var markerLatLng = { lat: shop.latitude, lng: shop.longitude };
+        var marker = new google.maps.Marker({
+          position: markerLatLng,
+          map: map,
+          title: shop.name
+        });
+
+        markers.push(marker);
+
+        var infoWindow = new google.maps.InfoWindow({
+          content: `<a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>`
+        });
+
+        infoWindows.push(infoWindow);
+
+        marker.addListener('click', function () {
+          closeInfoWindows();
+          infoWindow.open(map, marker);
+        });
+      });
+    }
+
+    function centerMapOnPrefecture() {
+      var selectedPrefecture = document.getElementById('prefectureSelect').value;
+
+      // 選択された都道府県に合致する緯度経度情報を検索
+      var selectedPrefectureData = markerData.find(shop => shop.prefecture === selectedPrefecture);
+
+      if (selectedPrefectureData) {
+        var centerLatLng = { lat: selectedPrefectureData.latitude, lng: selectedPrefectureData.longitude };
+        map.panTo(centerLatLng); // 地図の中心を移動
+      }
+    }
+
+    function closeInfoWindows() {
+      for (var i = 0; i < infoWindows.length; i++) {
+        infoWindows[i].close();
+      }
+    }
+  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap"
+    async
+    defer
+  ></script>
+
+    
   </tbody>
 </table>
 

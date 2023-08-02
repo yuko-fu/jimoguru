@@ -8,6 +8,7 @@ class ShopsController < ApplicationController
       {
       id: shop.id,
       name: shop.name,
+      prefecture: shop.prefecture,
       latitude: shop.latitude,
       longitude: shop.longitude,
     }

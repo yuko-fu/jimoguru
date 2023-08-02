@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery
   rescue_from CanCan::AccessDenied do |_exception|
     redirect_to root_path, alert: '画面を閲覧する権限がありません。'
   end

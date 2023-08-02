@@ -84,7 +84,7 @@
 
   <div class="field">
     <%= form.label :都道府県 %>
-    <%= form.text_field :prefecture %>
+    <%= form.text_field :prefecture, Ride.ride_areas.keys, {} %>
   </div>
 
   <div class="field">

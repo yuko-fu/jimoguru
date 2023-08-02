@@ -4,8 +4,18 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :ユーザー名 %><br />
+    <%= f.name_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :カテゴリー %>
+    <%= f.collection_select :prefecture, { prompt: '選択してください' }, class: 'form-control' %>
   </div>
 
   <div class="field">

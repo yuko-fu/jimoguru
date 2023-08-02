@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% if current_user.present? %>
+      <p>こんにちは、<%= current_user.name %>さん！</p>
+    <% else %>
+      <p>こんにちは、ゲストさん！</p>
+    <% end %>
     <title>Jimoguru</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_31_023047) do
+ActiveRecord::Schema.define(version: 2023_08_02_002417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2023_07_31_023047) do
 
   create_table "shops", force: :cascade do |t|
     t.string "name", null: false
-    t.string "prefecture", null: false
+    t.integer "prefecture", null: false
     t.string "address", null: false
     t.float "latitude", null: false
     t.float "longitude", null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2023_07_31_023047) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.integer "prefecture", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

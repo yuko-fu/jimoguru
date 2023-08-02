@@ -11,18 +11,18 @@
     </div>
   <% end %>
   <div>
-  <%= form_for :@shop, url: { action: :create }, method: :post do |f| %>
+  <%= form_for @shop, url: { action: :create }, method: :post do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name, placeholder: "店名を入力してください" %>
     <br>
-    <%= f.label :prefecture %>
-    <%= f.text_field :prefecture, placeholder: "都道府県を入力してください" %>
+    <%= f.label :都道府県 %>
+    <%= f.select :prefecture, Shop.prefecture_areas.keys, { prompt: '選択してください' } %>
     <br>
     <%= f.label :address %>
     <%= f.text_field :address, placeholder: "住所を入力してください" %>
     <br>
     <%= f.label :カテゴリー %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' } %>
     <br>
     <%= f.submit "登録" %>
     <% end %>
@@ -75,39 +75,6 @@
     google.maps.event.addDomListener(window, 'load', initMap);
   </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></>
+<% end %>  
+
   
-
-  <div class="field">
-    <%= form.label :店名 %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :都道府県 %>
-    <%= form.text_field :prefecture, Ride.ride_areas.keys, {} %>
-  </div>
-
-  <div class="field">
-    <%= form.label :住所 %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field" hidden>
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div class="field" hidden>
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
-  </div>
-
-  <div class="field">
-    <%= form.label :カテゴリー %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

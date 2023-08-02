@@ -5,21 +5,21 @@
 
   <div class="field">
     <%= f.label :ユーザー名 %><br />
-    <%= f.name_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :カテゴリー %>
-    <%= f.collection_select :prefecture, { prompt: '選択してください' }, class: 'form-control' %>
+    <%= f.label :都道府県 %>
+    <%= f.select :prefecture,User.prefecture_areas.keys, { prompt: '選択してください' } %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
     <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
@@ -27,7 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :確認用パスワード %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 

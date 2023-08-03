@@ -13,10 +13,22 @@ class ShopsController < ApplicationController
       longitude: shop.longitude,
     }
     end
+
+      if  params[:prefecture].present? && params[:category_id].present?
+        @shops = @shops.prefecture_search("%#{params[:prefecture]}%")
+        @shops = @shops.category_id_search(params[:category_id])
+      elsif params[:prefecture].present?
+        @shops = @shops.prefecture_search("%#{params[:prefecture]}%")
+      elsif params[:category_id].present?
+        @shops = @shops.category_id_search(params[:category_id])
+      end  
   end
 
   # GET /shops/1 or /shops/1.json
   def show
+    gon.shops = Shop.find(params[:id])
+      
+
   end
 
   # GET /shops/new
@@ -35,10 +47,10 @@ class ShopsController < ApplicationController
     respond_to do |format|
       if @shop.save
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully created." }
-        format.json { render :show, status: :created, location: @shop }
+        format.json { render :show, category: :created, location: @shop }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
+        format.html { render :new, category: :unprocessable_entity }
+        format.json { render json: @shop.errors, category: :unprocessable_entity }
       end
     end
   end
@@ -48,10 +60,10 @@ class ShopsController < ApplicationController
     respond_to do |format|
       if @shop.update(shop_params)
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }
-        format.json { render :show, status: :ok, location: @shop }
+        format.json { render :show, category: :ok, location: @shop }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
+        format.html { render :edit, category: :unprocessable_entity }
+        format.json { render json: @shop.errors, category: :unprocessable_entity }
       end
     end
   end

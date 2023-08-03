@@ -13,14 +13,14 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
+  
   <tbody>
   <%= form_with scope: :shop, url: root_path, method: :get, local: true do |f| %>
     <%= f.label :prefecture, "都道府県" %>
     <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください', include_blank: true } %>
     <%= f.label :category_id, "カテゴリー" %>
     <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください', include_blank: true } %>
-    <%= f.submit "検索", id: "centerMapOnPrefecture()" %>
+    <%= f.submit "検索", id: "codeAddress()" %>
     
   <% end %>
   
@@ -58,7 +58,7 @@
       geocoder = new google.maps.Geocoder();
 
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 9,
+        zoom: 7,
         center: { lat: 35.4550426, lng: 139.6312741 }
       });
 
@@ -89,23 +89,43 @@
       });
     }
 
-    function centerMapOnPrefecture() {
-      var selectedPrefecture = document.getElementById('prefectureSelect').value;
 
-      // 選択された都道府県に合致する緯度経度情報を検索
-      var selectedPrefectureData = markerData.find(shop => shop.prefecture === selectedPrefecture);
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+        //マーカーが複数できないようにする
+        if (aft == true){
+            marker.setMap(null);
+        }
 
-      if (selectedPrefectureData) {
-        var centerLatLng = { lat: selectedPrefectureData.latitude, lng: selectedPrefectureData.longitude };
-        map.panTo(centerLatLng); // 地図の中心を移動
-      }
+        //新しくマーカーを作成する
+        map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true	// ドラッグ可能にする
+        });
+
+        //二度目以降か判断
+        aft = true
+
+        //検索した時に緯度経度を入力する
+        document.getElementById('lat').value = results[0].geometry.location.lat();
+        document.getElementById('lng').value = results[0].geometry.location.lng();
+
+        // マーカーのドロップ（ドラッグ終了）時のイベント
+        google.maps.event.addListener( marker, 'dragend', function(ev){
+            // イベントの引数evの、プロパティ.latLngが緯度経度
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+        });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
     }
-
-    function closeInfoWindows() {
-      for (var i = 0; i < infoWindows.length; i++) {
-        infoWindows[i].close();
-      }
-    }
+  });   
+}
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script> 
   </tbody>

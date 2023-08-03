@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_02_041304) do
+ActiveRecord::Schema.define(version: 2023_08_03_052131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2023_08_02_041304) do
     t.bigint "menu_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "image"
+    t.string "content"
     t.index ["menu_id"], name: "index_votes_on_menu_id"
     t.index ["shop_id"], name: "index_votes_on_shop_id"
     t.index ["user_id"], name: "index_votes_on_user_id"

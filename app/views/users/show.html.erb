@@ -1,0 +1,27 @@
+<h1>投票詳細画面</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<h1>投票一覧</h1>
+
+<h3>ユーザー名</h3>
+<%= @user.name %>
+<h3>メールアドレス</h3>
+<%= @user.email %>
+<p>
+  <strong>投稿写真</strong>
+  <%= image_tag @vote_id.image.url %>
+</p>
+
+<p>
+  <strong>店名</strong>
+  <%= @vote_id.shop.name %>
+</p>
+
+<p>
+  <strong>メニュー名</strong>
+  <%= @vote_id.menu.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @vote_id.content %>
+</p>

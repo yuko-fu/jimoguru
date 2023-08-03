@@ -8,6 +8,7 @@ class VotesController < ApplicationController
 
   # GET /votes/1 or /votes/1.json
   def show
+    @vote = Vote.find(params[:id])
   end
 
   # GET /votes/new
@@ -17,6 +18,7 @@ class VotesController < ApplicationController
 
   # GET /votes/1/edit
   def edit
+    @vote = Vote.find(params[:id])
   end
 
   # POST /votes or /votes.json
@@ -36,6 +38,7 @@ class VotesController < ApplicationController
 
   # PATCH/PUT /votes/1 or /votes/1.json
   def update
+    @vote = Vote.find(params[:id])
     respond_to do |format|
       if @vote.update(vote_params)
         format.html { redirect_to vote_url(@vote), notice: "Vote was successfully updated." }

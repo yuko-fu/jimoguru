@@ -1,5 +1,9 @@
 <h1>New Vote</h1>
-
+<%= form_with model: @vote, local: true  do |form| %>
+  <%= form.text_area :content %><br>
+  <%= form.file_field :image %><br>
+  <%= form.submit %>
+<% end %>
 <%= render 'form', vote: @vote %>
 
 <%= link_to 'Back', votes_path %>

@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <% if current_user.present? %>
+      <p>こんにちは、<%= current_user.name %>さん！</p>
+    <% else %>
+      <p>こんにちは、ゲストさん！</p>
+    <% end %>
     <title>Jimoguru</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= include_gon %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </head>
 
   <body>

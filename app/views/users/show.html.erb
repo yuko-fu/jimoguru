@@ -1,0 +1,32 @@
+<h1>投票詳細画面</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<h1>投票一覧</h1>
+<table>
+  <head>
+    <tr>  
+      <th>投稿日</th>
+      <th>店名</th>
+      <th>メニュー名</th>
+      <th>投稿写真</th>
+      <th>コメント</th>
+      <th colspan="完了"></th>
+    </tr>
+  </head>
+  <body>
+    <% @votes.each do |vote| %>
+      <tr>
+          <td><%= vote.created_at.to_s(:datetime_jp) %></td>
+          <td ><%= vote.shop.name %></td>
+          <td><%= vote.menu.name %></td>
+          <td><%= vote.image %></td>
+          <td><%= vote.content %></td>
+        </tr>
+    <% end %>
+  </body>
+</table>
+
+<%= link_to 'お店検索', shops_path %>
+<%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
+<% if  current_user.admin? %>
+  <%= link_to '管理者画面', admin_users_path %>
+  <% end %>

@@ -1,3 +1,41 @@
 // Place all the styles related to the Shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  padding: 0;
+  margin: 0;
+}
+
+p{
+  margin: 10px;
+}
+
+#container {
+  margin: 10px;
+}
+
+.graf {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.data-name {
+  padding: 0 6px;
+  color: #404040;
+}
+
+.graf-bar-bg {
+  width: 100%;
+  background: #e0e0e0;
+}
+
+.graf-bar {
+  background: #32cd32;
+}
+
+.graf-bar span{
+  color: #FFF;
+  padding: 0 6px;
+}
+

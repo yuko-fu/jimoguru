@@ -1,6 +1,25 @@
 <h1>Editing Vote</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @shop.name %>
+</p>
 
-<%= render 'form', vote: @vote %>
+<p>
+  <strong>Prefecture:</strong>
+  <%= @shop.prefecture %>
+</p>
 
-<%= link_to 'Show', @vote %> |
-<%= link_to 'Back', votes_path %>
+<p>
+  <strong>Address:</strong>
+  <%= @shop.address %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @shop.category.name %>
+</p>
+
+
+
+<%= link_to 'Show', shop %> |
+<%= link_to 'Back', _path %>

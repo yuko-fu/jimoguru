@@ -1,4 +1,68 @@
 <h1>New Vote</h1>
+<div id="map"></div>
+<script type="text/javascript">
+var marker = gon.shop
+      function initMap() {
+        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+                  });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
+
+        var contentString = '住所：<%= @shop.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                    });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+    <script async defer
+                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+    </script>
+    <style type="text/css">
+      #map { height: 200px;
+            width: 70%;}
+    </style>
+<%= render 'form', vote: @vote %>
+<div id="container"></div>
+
+<p><a href="https://1-notes.com/javascript-horizontal-bar-graph/" target="_blank" rel="noopener">JavaScript | Horizontal bar graph| ONE NOTES</a></p>
+<script>
+let data = [
+  { name: 'item1', value: 750 },
+  { name: 'item2', value: 480 },
+  { name: 'item3', value: 900 },
+  { name: 'item4', value: 200 }
+];
+
+//しきい値
+let threshold = 1000;
+
+for (var variable of data) {
+  
+  //しきい値からパーセンテージを計算
+  variable.percentage = Math.round(variable.value / threshold * 100);
+
+  // containerに追加
+  document.querySelector('#container').insertAdjacentHTML('beforeend', `<div class="graf">
+  <div><span class="data-name">${variable.name}</span></div>
+  <div class="graf-bar-bg">
+  <div class="graf-bar" id="${variable.name}"><span>${variable.value}</span></div>
+  </div></div>`);
+// widthを指定
+    document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
+}
+</script>
 <%= form_with model: @vote, local: true  do |form| %>
   <%= form.text_area :content %><br>
   <%= form.file_field :image %><br>

@@ -19,6 +19,7 @@
   <%= @shop.category.name %>
 </p>
 
+<div id="map"></div>
 <script type="text/javascript">
 var marker = gon.shop
       function initMap() {
@@ -54,5 +55,10 @@ var marker = gon.shop
     </style>
 
 
+    
+    
+    
+
+<%= link_to '投票', new_vote_path(shop_id: @shop.id) %> |
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

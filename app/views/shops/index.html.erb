@@ -21,9 +21,9 @@
     <%= f.label :category_id, "カテゴリー" %>
     <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください', include_blank: true } %>
     <%= f.submit "検索", id: "codeAddress()" %>
-    
   <% end %>
-  
+  <%= link_to 'お店新規登録', new_shop_path %>
+
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.name %></td>

@@ -26,9 +26,16 @@ class ShopsController < ApplicationController
 
   # GET /shops/1 or /shops/1.json
   def show
+    
     gon.shops = Shop.find(params[:id])
-      
-
+    gon.menu = Shop.find(params[:id])
+    @shop = Shop.find(params[:id])
+    @votes = @shop.votes.group(:menu_id).count 
+    @menu_names = Menu.where(id: @votes.keys).pluck(:id, :name).to_h
+    @votes_with_names = @votes.map { |menu_id, count| { id: menu_id, name: @menu_names[menu_id], count: count } }
+    gon.votes = @votes_with_names
+  
+    
   end
 
   # GET /shops/new
@@ -88,4 +95,6 @@ class ShopsController < ApplicationController
     def shop_params
       params.require(:shop).permit(:name, :prefecture, :address, :category_id)
     end
+
+    
 end

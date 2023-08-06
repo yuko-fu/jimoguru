@@ -26,16 +26,44 @@ p{
 }
 
 .graf-bar-bg {
-  width: 100%;
-  background: #e0e0e0;
+  width: 50%;
+  background: #ffffff;
 }
 
 .graf-bar {
-  background: #32cd32;
+  background: #f97501;
 }
 
 .graf-bar span{
   color: #FFF;
   padding: 0 6px;
+}
+
+.menu-items {
+  display: flex;
+  flex-wrap: wrap; /* メニューアイテムが折り返される */
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 10px; /* 下方向の間隔を追加 */
+  /* 他のスタイルも追加できます */
+}
+
+.menu-item:last-child {
+  margin-right: 0;
+}
+
+.menu-item input[type="radio"] {
+  margin-right: 1px;
+}
+
+
+@media (max-width: 480px) {
+  .menu-item {
+    width: 50%; 
+  }
 }
 

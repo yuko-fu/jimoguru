@@ -13,15 +13,8 @@
 
   <div class="field">
     <%= @shop.name %>
-  </div>
+    <%= @shop.prefecture %>
+    <%= @shop.address %>
 
-
-  <div class="field">
-    <%= form.label :menu_id %>
-    <%= form.text_field :menu_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>

@@ -1,6 +1,8 @@
 <h1>New Vote</h1>
+<%= render 'form', vote: @vote %>
 <div id="map"></div>
 <script type="text/javascript">
+# debugger;
 var marker = gon.shop
       function initMap() {
         var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
@@ -33,15 +35,34 @@ var marker = gon.shop
       #map { height: 200px;
             width: 70%;}
     </style>
-<%= render 'form', vote: @vote %>
+
 <div id="container"></div>
 
+<div id="menuList" >
+  <%= form_with model: @vote, local: true do |form| %>
+    <%= form.label :投票メニュー名 %><br>
+    <div class="menu-item" class="menu-items">
+    <%= form.collection_radio_buttons(:menu_id, @menus, :id, :name) %>
+    </div>
+    <%= form.label :メニュー価格の価格など一言情報 %>
+    <%= form.text_field :content %><br>
+    <%= form.label :写真投稿 %>
+    <%= form.file_field :image %><br>
+    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+    <%= form.submit %>
+  <% end %>
+</div>
 
-<%= form_with model: @vote, local: true  do |form| %>
-  <%= form.text_area :content %><br>
-  <%= form.file_field :image %><br>
-  <%= form.submit %>
-<% end %>
-<%= render 'form', vote: @vote %>
+  <p>新しいメニューを投票</p>
+  <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
 
+    <%= form.label :新規投稿メニュー名 %>
+    <%= form.text_field :name %><br>
+    <%= form.label :メニュー価格の価格など一言情報 %>
+    <%= form.text_field :content %><br>
+    <%= form.label :写真 %><br>
+    <%= form.file_field :image %><br>
+    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+    <%= form.submit '投票する' %>
+  <% end %>
 <%= link_to 'Back', votes_path %>

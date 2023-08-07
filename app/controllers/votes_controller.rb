@@ -17,13 +17,6 @@ class VotesController < ApplicationController
     @vote = Vote.new
     @shop = Shop.find(params[:shop_id])
     @menus = @shop.menus
-    # @existing_vote = Vote.find_by(user: current_user, shop: @shop)
-    # @menu = Shop.new
-    # if @existing_vote
-    #   redirect_to _vote_path(@existing_vote)
-    # else
-    #   @vote = Vote.new(shop: @shop)
-    # end
     
   end
 

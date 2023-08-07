@@ -2,7 +2,6 @@
 <%= render 'form', vote: @vote %>
 <div id="map"></div>
 <script type="text/javascript">
-# debugger;
 var marker = gon.shop
       function initMap() {
         var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
@@ -63,6 +62,6 @@ var marker = gon.shop
     <%= form.label :写真 %><br>
     <%= form.file_field :image %><br>
     <%= form.hidden_field :shop_id, :value => @shop.id %><br>
-    <%= form.submit '投票する' %>
+    <%= form.submit 'メニュー登録' %>
   <% end %>
 <%= link_to 'Back', votes_path %>

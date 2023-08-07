@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many :shop
+  has_many :shops
 end

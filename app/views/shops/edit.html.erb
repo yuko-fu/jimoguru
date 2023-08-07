@@ -3,33 +3,7 @@
 
 <div id="container"></div>
 
-<p><a href="https://1-notes.com/javascript-horizontal-bar-graph/" target="_blank" rel="noopener">JavaScript | Horizontal bar graph| ONE NOTES</a></p>
-<script>
-let data = [
-  { name: 'item1', value: 750 },
-  { name: 'item2', value: 480 },
-  { name: 'item3', value: 900 },
-  { name: 'item4', value: 200 }
-];
 
-//しきい値
-let threshold = 1000;
-
-for (var variable of data) {
-  
-  //しきい値からパーセンテージを計算
-  variable.percentage = Math.round(variable.value / threshold * 100);
-
-  // containerに追加
-  document.querySelector('#container').insertAdjacentHTML('beforeend', `<div class="graf">
-  <div><span class="data-name">${variable.name}</span></div>
-  <div class="graf-bar-bg">
-  <div class="graf-bar" id="${variable.name}"><span>${variable.value}</span></div>
-  </div></div>`);
-// widthを指定
-    document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
-}
-</script>
 
 <%= link_to 'Show', @shop %> |
 <%= link_to 'Back', shops_path %>

@@ -4,26 +4,15 @@ class ShopsController < ApplicationController
   # GET /shops or /shops.json
   def index
     @shops = Shop.all
-    gon.shops = @shops.map do |shop|
-      {
-      id: shop.id,
-      name: shop.name,
-      prefecture: shop.prefecture,
-      latitude: shop.latitude,
-      longitude: shop.longitude,
-    }
+    @categories = Category.all
+    
+    if params[:prefecture].present?
+      @shops = @shops.where(prefecture: params[:prefecture])
+    elsif params[:category_id].present?
+      category = Category.find(params[:category_id])
+      @shops = category.shops
     end
-
-      if  params[:prefecture].present? && params[:category_id].present?
-        @shops = @shops.prefecture_search("%#{params[:prefecture]}%")
-        @shops = @shops.category_id_search(params[:category_id])
-      elsif params[:prefecture].present?
-        @shops = @shops.prefecture_search("%#{params[:prefecture]}%")
-      elsif params[:category_id].present?
-        @shops = @shops.category_id_search(params[:category_id])
-      end  
   end
-
   # GET /shops/1 or /shops/1.json
   def show
     
@@ -45,6 +34,7 @@ class ShopsController < ApplicationController
 
   # GET /shops/1/edit
   def edit
+    @shop = Shop.find(params[:id])
   end
 
   # POST /shops or /shops.json
@@ -64,6 +54,7 @@ class ShopsController < ApplicationController
 
   # PATCH/PUT /shops/1 or /shops/1.json
   def update
+    
     respond_to do |format|
       if @shop.update(shop_params)
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }

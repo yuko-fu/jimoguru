@@ -1,4 +1,4 @@
-<%= form_with(model: menu) do |form| %>
+<%= form_with url: menus_path do |form| %>
   <% if menu.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>

@@ -4,19 +4,27 @@ class ShopsController < ApplicationController
   # GET /shops or /shops.json
   def index
     @shops = Shop.all
-    gon.shops = @shops.map do |shop|
-      {
-      id: shop.id,
-      name: shop.name,
-      prefecture: shop.prefecture,
-      latitude: shop.latitude,
-      longitude: shop.longitude,
-    }
+    @categories = Category.all
+    
+    if params[:prefecture].present?
+      @shops = @shops.where(prefecture: params[:prefecture])
+    elsif params[:category_id].present?
+      category = Category.find(params[:category_id])
+      @shops = category.shops
     end
   end
-
   # GET /shops/1 or /shops/1.json
   def show
+    
+    gon.shops = Shop.find(params[:id])
+    gon.menu = Shop.find(params[:id])
+    @shop = Shop.find(params[:id])
+    @votes = @shop.votes.group(:menu_id).count 
+    @menu_names = Menu.where(id: @votes.keys).pluck(:id, :name).to_h
+    @votes_with_names = @votes.map { |menu_id, count| { id: menu_id, name: @menu_names[menu_id], count: count } }
+    gon.votes = @votes_with_names
+    @user_prefecture = current_user.prefecture if user_signed_in?
+    
   end
 
   # GET /shops/new
@@ -26,6 +34,7 @@ class ShopsController < ApplicationController
 
   # GET /shops/1/edit
   def edit
+    @shop = Shop.find(params[:id])
   end
 
   # POST /shops or /shops.json
@@ -35,23 +44,24 @@ class ShopsController < ApplicationController
     respond_to do |format|
       if @shop.save
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully created." }
-        format.json { render :show, status: :created, location: @shop }
+        format.json { render :show, category: :created, location: @shop }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
+        format.html { render :new, category: :unprocessable_entity }
+        format.json { render json: @shop.errors, category: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /shops/1 or /shops/1.json
   def update
+    
     respond_to do |format|
       if @shop.update(shop_params)
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }
-        format.json { render :show, status: :ok, location: @shop }
+        format.json { render :show, category: :ok, location: @shop }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
+        format.html { render :edit, category: :unprocessable_entity }
+        format.json { render json: @shop.errors, category: :unprocessable_entity }
       end
     end
   end
@@ -76,4 +86,6 @@ class ShopsController < ApplicationController
     def shop_params
       params.require(:shop).permit(:name, :prefecture, :address, :category_id)
     end
+
+    
 end

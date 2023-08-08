@@ -1,3 +1,71 @@
 // Place all the styles related to the Shops controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body {
+  padding: 0;
+  margin: 0;
+}
+
+p{
+  margin: 10px;
+}
+
+#container {
+  margin: 10px;
+}
+
+.graf {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
+
+.data-name {
+  padding: 0 6px;
+  color: #404040;
+  text-align: right;
+  width: 10%;
+}
+
+.graf-bar-bg {
+  width: 50%;
+  background: #ffffff;
+}
+
+.graf-bar {
+  background: #f97d0194;
+}
+
+.graf-bar span{
+  color: #0c0b0b;
+  padding: 0 1px;
+}
+
+.menu-items {
+  display: flex;
+  flex-wrap: wrap; /* メニューアイテムが折り返される */
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin-bottom: 10px; /* 下方向の間隔を追加 */
+  /* 他のスタイルも追加できます */
+}
+
+.menu-item:last-child {
+  margin-right: 0;
+}
+
+.menu-item input[type="radio"] {
+  margin-right: 1px;
+}
+
+
+@media (max-width: 480px) {
+  .menu-item {
+    width: 40%; 
+  }
+}
+

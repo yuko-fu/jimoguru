@@ -1,9 +1,65 @@
 <h1>New Vote</h1>
-<%= form_with model: @vote, local: true  do |form| %>
-  <%= form.text_area :content %><br>
-  <%= form.file_field :image %><br>
-  <%= form.submit %>
-<% end %>
 <%= render 'form', vote: @vote %>
+<div id="map"></div>
+<script type="text/javascript">
+var marker = gon.shop
+      function initMap() {
+        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+                  });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
 
-<%= link_to 'Back', votes_path %>
+        var contentString = '住所：<%= @shop.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                    });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      
+    </script>
+    <script async defer
+                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+    </script>
+    <style type="text/css">
+      #map { height: 200px;
+            width: 70%;}
+    </style>
+
+<div id="container"></div>
+
+<div id="menuList" >
+  <%= form_with model: @vote, local: true do |form| %>
+    <%= form.label :投票メニュー名 %><br>
+    <div class="menu-item" class="menu-items">
+    <%= form.collection_radio_buttons(:menu_id, @menus, :id, :name) %>
+    </div>
+    <%= form.label :メニュー価格の価格など一言情報 %>
+    <%= form.text_field :content %><br>
+    <%= form.label :写真投稿 %>
+    <%= form.file_field :image %><br>
+    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+    <%= form.submit %>
+  <% end %>
+</div>
+
+  <p>新しいメニューを投票</p>
+  <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
+
+    <%= form.label :新規投稿メニュー名 %>
+    <%= form.text_field :name %><br>
+    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+    <%= form.submit 'メニュー登録' %>
+  <% end %>
+<%= link_to 'Back', shop_path(@shop) %>

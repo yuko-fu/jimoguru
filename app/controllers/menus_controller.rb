@@ -7,7 +7,13 @@ class MenusController < ApplicationController
   end
 
   # GET /menus/1 or /menus/1.json
+
   def show
+    
+    # @menu = Menu.find(params[:id])
+    # @votes = @menu.votes.group(:menu_id).count 
+    # gon.votes = @votes
+    
   end
 
   # GET /menus/new
@@ -21,16 +27,14 @@ class MenusController < ApplicationController
 
   # POST /menus or /menus.json
   def create
+    
     @menu = Menu.new(menu_params)
-
-    respond_to do |format|
-      if @menu.save
-        format.html { redirect_to menu_url(@menu), notice: "Menu was successfully created." }
-        format.json { render :show, status: :created, location: @menu }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @menu.errors, status: :unprocessable_entity }
-      end
+    @vote = Vote.new(vote_params)
+    
+    if @menu.save
+      redirect_to vote_path(@shop)
+    else
+      render :new
     end
   end
 
@@ -65,6 +69,10 @@ class MenusController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def menu_params
-      params.require(:menu).permit(:name, :shop_id)
+      params.permit(:name, :shop_id)
+    end
+
+    def vote_params
+      params.permit(:image, :content, :shop_id, :user_id, :menu_id)
     end
 end

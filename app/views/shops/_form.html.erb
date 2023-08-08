@@ -28,53 +28,37 @@
     <% end %>
   </div>
 
+  
+ 
   <div id="map" style="height: 400px; width: 100%;"></div>
-  <script>
-    // Your JavaScript code will go here
-    var map;
+  <script type="text/javascript">
+  var marker = gon.shop
+      function initMap() {
+        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+                  });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
 
-    function initMap() {
-      // 初期の地図の中心座標を設定
-      var initialLatLng = { lat: 35.6895, lng: 139.6917 }; // 例: 東京の緯度経度
+        var contentString = '住所：<%= @shop.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                    });
 
-      // 地図を作成
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: initialLatLng,
-        zoom: 13 // ズームレベル（1-20の範囲で指定）
-      });
-    }
-
-    // Geocoding APIを使用して住所から座標を取得し、地図上にマーカーを追加する関数
-    function addMarker() {
-      var geocoder = new google.maps.Geocoder();
-      var address = document.getElementById('location_address').value;
-
-      geocoder.geocode({ 'address': address }, function (results, status) {
-        if (status === 'OK') {
-          // 最初の結果を使用（通常、他にも複数の結果が返されることがあります）
-          var location = results[0].geometry.location;
-          // 地図上にマーカーを追加
-          var marker = new google.maps.Marker({
-            map: map,
-            position: location
-          });
-          // マーカーをクリックしたときに情報ウィンドウを表示
-          var infoWindow = new google.maps.InfoWindow({
-            content: address
-          });
-          marker.addListener('click', function () {
-            infoWindow.open(map, marker);
-          });
-        } else {
-          alert('Geocode was not successful for the following reason: ' + status);
-        }
-      });
-    }
-
-    // ページがロードされたときに地図を初期化
-    // google.maps.event.addDomListener(window, 'load', initMap);
-  </script>
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" defer></script>
+
 
 <% end %>  
 

@@ -12,21 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :shop_id %>
-    <%= form.text_field :shop_id %>
-  </div>
+    <%= @shop.name %>
+    <%= @shop.prefecture %>
+    <%= @shop.address %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :menu_id %>
-    <%= form.text_field :menu_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>

@@ -19,7 +19,7 @@ gem 'cancancan'
 gem 'dotenv-rails'
 gem 'geocoder'
 gem 'gon'
-
+gem "image_processing"
 
 
 group :development, :test do

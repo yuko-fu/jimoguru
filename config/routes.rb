@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'users/show'
-  resources :votes, only: [:new, :create]
+  resources :votes, only: [:new, :create,:edit]
   resources :menus, only: [:new, :create]
   resources :shops
   resources :categories

@@ -15,10 +15,15 @@
   <body>
     <% @votes.each do |vote| %>
       <tr>
+      <div>
           <td><%= vote.created_at.to_s(:datetime_jp) %></td>
-          <td ><%= vote.shop.name %></td>
+          <td ><%= link_to vote.shop.name, shop_path(vote.shop)%></td>
           <td><%= vote.menu.name %></td>
-          <td><%= vote.image %></td>
+          <td><% if vote.image.attached? %>
+            <%= image_tag vote.image.variant(resize: "200") %>
+          <% else %>
+            画像がありません<br>
+          <% end %></td>
           <td><%= vote.content %></td>
         </tr>
     <% end %>
@@ -28,5 +33,5 @@
 <%= link_to 'お店検索', shops_path %>
 <%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
 <% if  current_user.admin? %>
-  <%= link_to '管理者画面', admin_users_path %>
+  <%= link_to '管理者画面', index_path %>
   <% end %>

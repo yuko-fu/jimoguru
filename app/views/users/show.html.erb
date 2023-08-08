@@ -33,5 +33,5 @@
 <%= link_to 'お店検索', shops_path %>
 <%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
 <% if  current_user.admin? %>
-  <%= link_to '管理者画面', index_path %>
+  <%= link_to '管理者画面', '/admin' %>
   <% end %>

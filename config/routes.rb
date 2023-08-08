@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'users/show'
   resources :votes, only: [:new, :create,:edit]
-  resources :menus, only: [:new, :create]
+  resources :menus, only: [:new, :create, :edit]
   resources :shops
   resources :categories
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

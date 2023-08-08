@@ -26,7 +26,6 @@ var marker = gon.shop
           infowindow.open(map, marker);
         });
       }
-
       
     </script>
     <script async defer
@@ -56,7 +55,6 @@ var marker = gon.shop
 
   <p>新しいメニューを投票</p>
   <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
-
     <%= form.label :新規投稿メニュー名 %>
     <%= form.text_field :name %><br>
     <%= form.hidden_field :shop_id, :value => @shop.id %><br>

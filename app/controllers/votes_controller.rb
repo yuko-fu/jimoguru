@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: %i[ show edit update destroy ]
-
+  
   # GET /votes or /votes.json
   def index
     @votes = Vote.all
@@ -29,11 +29,13 @@ class VotesController < ApplicationController
   def create
     @vote = current_user.votes.new(vote_params)
     @shop = Shop.find(params[:vote][:shop_id])
-    
+    @menus = @shop.menus
     if @vote.save
       redirect_to @vote.shop, notice: '投票が成功しました。'
     else
+      Rails.logger.error @vote.errors.full_messages.inspect
       render :new
+      
     end
   end
 
@@ -67,7 +69,6 @@ class VotesController < ApplicationController
       @vote = Vote.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def vote_params
       params.require(:vote).permit(:image, :content, :shop_id, :user_id, :menu_id)
     end

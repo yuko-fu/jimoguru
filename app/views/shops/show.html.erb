@@ -55,7 +55,6 @@ var marker = gon.shop
 
     <div id="container"></div>
     <script>
-    debugger;
     var dataFromDatabase = gon.votes;
     // しきい値
     var threshold = 100;
@@ -67,17 +66,20 @@ var marker = gon.shop
       
       // containerに追加
       document.querySelector('#container').insertAdjacentHTML('beforeend', `<div class="graf">
-        <div><span class="data-name">${variable.name}</span></div>
-        <div class="graf-bar-bg">
-        <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
-        </div></div>`);
+        
+        <span class="data-name">${variable.name}</span>
     
+          <div class="graf-bar-bg">
+          <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
+          </div></div>`);
+      
       // widthを指定
       document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
     });
     </script>
-    
 
-<%= link_to '投票', new_vote_path(shop_id: @shop.id) %> |
+<% if user_signed_in? && @user_prefecture == @shop.prefecture %>
+  <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn btn-primary" %>
+<% end %>
 <%= link_to 'Edit', edit_shop_path(@shop) %> |
 <%= link_to 'Back', shops_path %>

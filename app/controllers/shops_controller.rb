@@ -23,7 +23,7 @@ class ShopsController < ApplicationController
     @menu_names = Menu.where(id: @votes.keys).pluck(:id, :name).to_h
     @votes_with_names = @votes.map { |menu_id, count| { id: menu_id, name: @menu_names[menu_id], count: count } }
     gon.votes = @votes_with_names
-  
+    @user_prefecture = current_user.prefecture if user_signed_in?
     
   end
 

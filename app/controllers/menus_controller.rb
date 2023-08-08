@@ -27,11 +27,12 @@ class MenusController < ApplicationController
 
   # POST /menus or /menus.json
   def create
+    
     @menu = Menu.new(menu_params)
     @vote = Vote.new(vote_params)
     
-    if @menu.save #&& @vote.save
-      redirect_to vote_path(:shop_id)
+    if @menu.save
+      redirect_to vote_path(@shop)
     else
       render :new
     end

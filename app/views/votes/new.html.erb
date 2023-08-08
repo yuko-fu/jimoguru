@@ -26,6 +26,8 @@ var marker = gon.shop
           infowindow.open(map, marker);
         });
       }
+
+      
     </script>
     <script async defer
                   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
@@ -57,11 +59,7 @@ var marker = gon.shop
 
     <%= form.label :新規投稿メニュー名 %>
     <%= form.text_field :name %><br>
-    <%= form.label :メニュー価格の価格など一言情報 %>
-    <%= form.text_field :content %><br>
-    <%= form.label :写真 %><br>
-    <%= form.file_field :image %><br>
     <%= form.hidden_field :shop_id, :value => @shop.id %><br>
     <%= form.submit 'メニュー登録' %>
   <% end %>
-<%= link_to 'Back', votes_path %>
+<%= link_to 'Back', shop_path(@shop) %>

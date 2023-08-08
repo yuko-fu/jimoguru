@@ -23,6 +23,7 @@ class MenusController < ApplicationController
 
   # GET /menus/1/edit
   def edit
+    @menu = Menu.new
   end
 
   # POST /menus or /menus.json
@@ -30,9 +31,10 @@ class MenusController < ApplicationController
     
     @menu = Menu.new(menu_params)
     @vote = Vote.new(vote_params)
-    
+    @shop = Shop.find(params[:shop_id])
+    # binding.pry
     if @menu.save
-      redirect_to vote_path(@shop)
+      redirect_to new_vote_path(shop_id: @shop.id)
     else
       render :new
     end

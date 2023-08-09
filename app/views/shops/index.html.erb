@@ -22,8 +22,8 @@
     <%= submit_tag '検索' %>
   <% end %>
 
-  <%= link_to 'お店新規登録', new_shop_path %>
-  <%= link_to 'ユーザー詳細画面', users_show_path %>
+  <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+  <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
 
     <% @shops.each do |shop| %>
       <tr>
@@ -31,7 +31,7 @@
         <td><%= shop.prefecture %></td>
         <td><%= shop.address %></td>
         <td><%= shop.category.name %></td>
-        <td><%= link_to 'お店詳細', shop %></td>
+        <td><%= link_to 'おすすメニューを見る', shop %></td>
 
       
       </tr>
@@ -40,7 +40,7 @@
  <style>
     #map {
       height: 500px;
-      width: 100%;
+      width: 70%;
     }
   </style>
 
@@ -66,38 +66,47 @@
   }
 
   function displayMarkers() {
-    var bounds = new google.maps.LatLngBounds(); // 新しい LatLngBounds オブジェクトを作成
+      var bounds = new google.maps.LatLngBounds();
 
-    markerData.forEach(shop => {
-      var markerLatLng = { lat: shop.latitude, lng: shop.longitude };
-      var marker = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        title: shop.name
+      markerData.forEach(shop => {
+        var markerLatLng = { lat: shop.latitude, lng: shop.longitude };
+        var marker = new google.maps.Marker({
+          position: markerLatLng,
+          map: map,
+          title: shop.name
+        });
+
+        bounds.extend(marker.getPosition());
+        markers.push(marker);
+
+        var infoWindow = new google.maps.InfoWindow();
+
+        infoWindows.push(infoWindow);
+
+        marker.addListener('click', function () {
+          closeInfoWindows();
+          infoWindow.setContent(
+            `<div class='info-window-content'>
+              <a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>
+              <p>カテゴリー: ${shop.category}</p>
+              <p>住所: ${shop.address}</p>
+            </div>`
+          );
+          infoWindow.open(map, marker);
+        });
       });
 
-      bounds.extend(marker.getPosition()); // LatLngBounds オブジェクトに座標を追加
-      markers.push(marker);
+      map.fitBounds(bounds);
+    }
 
-      var infoWindow = new google.maps.InfoWindow({
-        content: `<a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>`
+    function closeInfoWindows() {
+      infoWindows.forEach(infoWindow => {
+        infoWindow.close();
       });
-
-      infoWindows.push(infoWindow);
-
-      marker.addListener('click', function () {
-        closeInfoWindows();
-        infoWindow.open(map, marker);
-      });
-    });
-
-    map.fitBounds(bounds); // LatLngBounds オブジェクトを使用して地図の中心とズームを調整
-  }
+    }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script> 
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'お店新規登録', new_shop_path %>

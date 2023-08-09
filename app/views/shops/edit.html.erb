@@ -1,9 +1,67 @@
 <h1>Editing Shop</h1>
-<%= render 'form', shop: @shop %>
+<%= form_with(model: @shop, local: true,url: shop_path(@shop.id) ) do |form| %>
+  <% if @shop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shop.errors.count, "error") %> prohibited this @shop from being saved:</h2>
 
-<div id="container"></div>
+      <ul>
+        <% @shop.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+  <%= form_for @shop, url: { action: :create }, method: :post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "店名を入力してください" %>
+    <br>
+    <%= f.label :都道府県 %>
+    <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください' } %>
+    <br>
+    <%= f.label :address %>
+    <%= f.text_field :address, placeholder: "住所を入力してください" %>
+    <br>
+    <%= f.label :カテゴリー %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' } %>
+    <br>
+    <%= f.submit "登録" %>
+  <% end %>
+  </div>
+  <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
+  
+ 
+  <div id="map" style="height: 400px; width: 100%;"></div>
+  <script type="text/javascript">
+  var marker = gon.shops
+ 
+      function initMap() {
+        var test ={ lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %> };
+        var map = new google.maps.Map(document.getElementById('map'), {
+                  zoom: 15,
+                  center: test
+                  });
+        var transitLayer = new google.maps.TransitLayer();
+        transitLayer.setMap(map);
 
+        var contentString = '住所：<%= @shop.address %>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                    });
 
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" defer></script>
+
+<% end %>  
 
 <%= link_to 'Show', @shop %> |
 <%= link_to 'Back', shops_path %>

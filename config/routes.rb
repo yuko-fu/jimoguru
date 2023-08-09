@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  resources :votes, only: [:new, :create,:edit]
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+  resources :votes
   resources :menus, only: [:new, :create, :edit]
   resources :shops
   resources :categories
+  resources :contacts, only: [:new, :create]
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { registrations: 'users/registrations' }
-  get "users/show" => "users#show"
-  
+  resources :users, only: [:show]
   root 'shops#index'
   
   if Rails.env.development?

@@ -58,6 +58,8 @@ var marker = gon.shop
     var dataFromDatabase = gon.votes;
     // しきい値
     var threshold = 100;
+
+    dataFromDatabase.sort((a, b) => b.count - a.count);
     // データベースから取得したデータをループ処理
     dataFromDatabase.forEach(variable => {
       
@@ -81,5 +83,5 @@ var marker = gon.shop
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
   <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn btn-primary" %>
 <% end %>
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+<%= link_to 'Edit', edit_shop_path(@shop), data: {"turbolinks" => false} %> |
+<%= link_to 'Back', shops_path, data: {"turbolinks" => false} %>

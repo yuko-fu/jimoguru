@@ -20,7 +20,7 @@ gem 'dotenv-rails'
 gem 'geocoder'
 gem 'gon'
 gem "image_processing"
-
+gem 'google_places'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

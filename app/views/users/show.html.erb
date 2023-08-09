@@ -25,13 +25,14 @@
             画像がありません<br>
           <% end %></td>
           <td><%= vote.content %></td>
+          <td><%= link_to "削除", vote_path(vote.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
     <% end %>
   </body>
 </table>
 
-<%= link_to 'お店検索', shops_path %>
+<%= link_to 'お店検索', shops_path, data: {"turbolinks" => false} %>
 <%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
 <% if  current_user.admin? %>
-  <%= link_to '管理者画面', '/admin' %>
+  <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}  %>
   <% end %>

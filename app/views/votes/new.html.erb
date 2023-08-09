@@ -60,4 +60,4 @@ var marker = gon.shop
     <%= form.hidden_field :shop_id, :value => @shop.id %><br>
     <%= form.submit 'メニュー登録' %>
   <% end %>
-<%= link_to 'Back', shop_path(@shop) %>
+<%= link_to 'Back', shop_path(@shop), data: {"turbolinks" => false} %>

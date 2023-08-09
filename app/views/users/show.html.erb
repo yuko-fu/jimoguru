@@ -25,6 +25,7 @@
             画像がありません<br>
           <% end %></td>
           <td><%= vote.content %></td>
+          <td><%= link_to "削除", vote, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
         </tr>
     <% end %>
   </body>

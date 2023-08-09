@@ -34,7 +34,7 @@
   <script type="text/javascript">
   var marker = gon.shops
       function initMap() {
-        var test ={lat: <%= @shop.latitude %> lng <%= @shop.longitude %>};
+        var test ={ lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %> };
         var map = new google.maps.Map(document.getElementById('map'), {
                   zoom: 15,
                   center: test

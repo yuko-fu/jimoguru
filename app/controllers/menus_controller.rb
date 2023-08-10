@@ -9,7 +9,7 @@ class MenusController < ApplicationController
   # GET /menus/1 or /menus/1.json
 
   def show
-    
+    @menu = Menu.new
     # @menu = Menu.find(params[:id])
     # @votes = @menu.votes.group(:menu_id).count 
     # gon.votes = @votes

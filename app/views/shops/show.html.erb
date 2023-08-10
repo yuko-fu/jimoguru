@@ -1,23 +1,24 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Name:</strong>
+  <strong>店名:</strong>
   <%= @shop.name %>
 </p>
 
 <p>
-  <strong>Prefecture:</strong>
+  <strong>都道府県:</strong>
   <%= @shop.prefecture %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>住所:</strong>
   <%= @shop.address %>
 </p>
 
 <p>
-  <strong>Category:</strong>
+  <strong>カテゴリー:</strong>
   <%= @shop.category.name %>
 </p>
+
 <div id="map"></div>
 <script type="text/javascript">
 var marker = gon.shop
@@ -49,9 +50,14 @@ var marker = gon.shop
                   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
     </script>
     <style type="text/css">
-      #map { height: 200px;
+      #map { height: 400px;
             width: 80%;}
     </style>
+
+    <div style="display: flex; justify-content: center;">
+      <%= image_tag "jimomin.png", class: "ranking_logo" %>
+    </div>
+    
 
     <div id="container"></div>
     <script>
@@ -83,5 +89,5 @@ var marker = gon.shop
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
   <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn btn-primary" %>
 <% end %>
-<%= link_to 'Edit', edit_shop_path(@shop), data: {"turbolinks" => false} %> |
-<%= link_to 'Back', shops_path, data: {"turbolinks" => false} %>
+<%= link_to 'ショップ情報編集', edit_shop_path(@shop), data: {"turbolinks" => false} %> |
+<%= link_to 'topページ', shops_path, data: {"turbolinks" => false} %>

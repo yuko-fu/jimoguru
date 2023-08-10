@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+ .ranking_logo {
+  width: 400px; /* 幅を調整する値に変更 */
+  height: auto; /* 高さはアスペクト比を保持して自動調整 */
+}
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 垂直方向の中央寄せも希望する場合 */
+  height: 100vh; /* 画面の高さいっぱいにコンテナを広げる */
+}

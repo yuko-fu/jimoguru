@@ -13,6 +13,7 @@ class ShopsController < ApplicationController
       category = Category.find(params[:category_id])
       @shops = category.shops
     end
+    @category_names = Category.pluck(:name)
   end
   # GET /shops/1 or /shops/1.json
   def show

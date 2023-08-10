@@ -24,7 +24,7 @@
 
   <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
   <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
-
+  
     <% @shops.each do |shop| %>
       <tr>
         <td><%= shop.name %></td>
@@ -80,7 +80,8 @@
         markers.push(marker);
 
         var infoWindow = new google.maps.InfoWindow();
-
+        var categories = '<% raw @categories.to_json %>';
+        
         infoWindows.push(infoWindow);
 
         marker.addListener('click', function () {
@@ -88,7 +89,7 @@
           infoWindow.setContent(
             `<div class='info-window-content'>
               <a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>
-              <p>カテゴリー: ${shop.category}</p>
+              <p>カテゴリー: ${categories}</p>
               <p>住所: ${shop.address}</p>
             </div>`
           );

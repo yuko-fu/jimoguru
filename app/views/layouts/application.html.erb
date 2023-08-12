@@ -13,11 +13,15 @@
 
   <body>
   <div id="header">
-  <a href="<%= shops_path %>" class="logo">
-    <%= image_tag "jimoguru_logo.png", alt: "Jimoguruのロゴ" %>
-  </a>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class="logout_button" %>
-    <% else %>
+    <div class="logo">
+      <a href="<%= shops_path %>" class="logo">
+        <%= image_tag "jimoguru_logo.png", alt: "Jimoguruのロゴ" %>
+      </a>
+    </div>
+    <div class="right-aligned-buttons">
+      <%= link_to 'TOP',root_path, data: {"turbolinks" => false}, class:"logout_button" %>
+      <%= link_to " ログアウト ", destroy_user_session_path, method: :delete, class:"logout_button" %>
+    </div>
   </div>
   <%= content_tag(:div, flash[:alert], class: "alert alert-danger") if flash[:alert] %>
     <% if user_signed_in? %>

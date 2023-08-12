@@ -34,10 +34,17 @@ body {
     background-size: cover; /* 画像をヘッダーに合わせてカバー */
     background-size: 50%;
     /* text-align: center; ヘッダーのテキストを中央揃え */
+    display: flex;
+    justify-content: flex-end;
     padding: 20px; /* ヘッダーの余白 */
-    color: white; /* 文字の色を白に */
+    color: white; 文字の色を白に
     height: 70px; /* ヘッダーの高さを設定 */
 }
+
+.logo {
+  margin-right: auto;
+}
+
 .logo img {
   width: 200px; /* 幅を200pxに設定 */
   height: auto; /* 高さを自動調整 */
@@ -52,4 +59,32 @@ body {
 #header a.logo:hover {
   background-color: transparent; /* 背景を透明にする */
   opacity: 0.6;
+}
+
+.logout_button {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(251, 159, 22);
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 7px 10px;
+  border-radius: 3px;
+  display: flex; /* ボタンを横並びにする */
+  align-items: center; /* 垂直方向に中央に揃える */
+}
+
+.logout_button:hover {
+  background-color: rgb(251, 159, 22);
+  color: rgba(0, 0, 0, 0.639);
+  opacity: 0.6 ;
+}
+.right-aligned-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.logout_button + .logout_button {
+  margin-left: 10px; /* 2つ目のボタンの左マージンを追加 */
 }

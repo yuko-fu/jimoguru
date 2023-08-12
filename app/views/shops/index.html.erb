@@ -1,50 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <h1>お店検索</h1>
-
-<table>
-  <thead>
-
-    <tr>
-      <th>店名</th>
-      <th>カテゴリー</th>
-      <th>都道府県</th>
-      <th>住所</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  
-  <tbody>
-  
-  <%= form_tag shops_path, method: :get do %>
-    <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
-    <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る' %>
-    <%= submit_tag '検索' %>
-  <% end %>
-
-  <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+<%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
   <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
-
-    <% @shops.each do |shop| %>
-      <tr>
-        <td><%= shop.name %></td>
-        <td><%= shop.category.name %></td>
-        <td><%= shop.prefecture %></td>
-        <td><%= shop.address %></td>
-        <td><%= link_to 'おすすメニューを見る', shop %></td>
-
-      
-      </tr>
-    <% end %>
-    
- <style>
-    #map {
-      height: 500px;
-      width: 70%;
-    }
-  </style>
-
+<div id="container">
   <div id="map"></div>
+  <div id="list">
+    <!-- お店のリストをここに配置 -->
+    <table>
+      <thead>
+        <tr>
+          <th>店名</th>
+          <th>カテゴリー</th>
+          <th>都道府県</th>
+          <th>住所</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      
+        <% @shops.each do |shop| %>
+          <tr>
+            <td class="shop_name"><%= link_to shop.name, shop %></td>
+            <td class="index_category"><%= shop.category.name %></td>
+            <td class="index_prefecture"><%= shop.prefecture %></td>
+            <td ><%= shop.address %></td>
+          </tr>
+        <% end %>
+        <%= form_tag shops_path, method: :get do %>
+          <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
+          <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る' %>
+          <%= submit_tag '検索' %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>  
+</div>
   <script>
     var map;
     var markers = [];
@@ -54,6 +45,7 @@
     // データベースから取得したマーカー情報（例：仮のデータ）
     var markerData = <%= raw @shops.to_json %>;
     var categoryName = <%= raw @category_names.to_json %>;
+    
 
     function initMap() {
     geocoder = new google.maps.Geocoder();

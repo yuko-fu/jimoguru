@@ -13,14 +13,43 @@
  *= require_tree .
  *= require_self
  */
- .ranking_logo {
+body {
+  background-color: rgba(245, 245, 220, 0.654);
+  background-image: url('assets/23950411.jpg'); /* ヘッダーの背景画像 */
+}
+
+.ranking_logo {
   width: 400px; /* 幅を調整する値に変更 */
   height: auto; /* 高さはアスペクト比を保持して自動調整 */
 }
 
 .centered-container {
   display: flex;
-  justify-content: center;
-  align-items: center; /* 垂直方向の中央寄せも希望する場合 */
-  height: 100vh; /* 画面の高さいっぱいにコンテナを広げる */
+  justify-content: space-between; /* 要素間のスペースを最大化 */
+  align-items: flex-start;/* 画面の高さいっぱいにコンテナを広げる */
+}
+
+#header {
+    background-color: #f7f7f700; /* 背景色（画像が読み込めない場合のフォールバック） */
+    background-size: cover; /* 画像をヘッダーに合わせてカバー */
+    background-size: 50%;
+    /* text-align: center; ヘッダーのテキストを中央揃え */
+    padding: 20px; /* ヘッダーの余白 */
+    color: white; /* 文字の色を白に */
+    height: 70px; /* ヘッダーの高さを設定 */
+}
+.logo img {
+  width: 200px; /* 幅を200pxに設定 */
+  height: auto; /* 高さを自動調整 */
+  border-radius: 10px; /* 画像の角を丸くする */
+  /* 他のスタイルを追加できます */
+}
+#header a.logo {
+  text-decoration: none; /* アンダーラインを非表示にする */
+  display: inline-block; 
+  transition: background-color 0.3s, opacity 0.3s; 
+}
+#header a.logo:hover {
+  background-color: transparent; /* 背景を透明にする */
+  opacity: 0.6;
 }

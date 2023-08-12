@@ -73,9 +73,11 @@ var marker = gon.shop
       variable.percentage = Math.round(variable.count / threshold * 100);
       
       // containerに追加
-      document.querySelector('#container').insertAdjacentHTML('beforeend', `<div class="graf">
-        
+      document.querySelector('#container').insertAdjacentHTML('beforeend', `
+    <div class="graf">
+      <a href="/menus/${variable.id}" class="menu-link">
         <span class="data-name">${variable.name}</span>
+      </a>
     
           <div class="graf-bar-bg">
           <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
@@ -85,6 +87,7 @@ var marker = gon.shop
       document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
     });
     </script>
+
 
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
   <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn btn-primary" %>

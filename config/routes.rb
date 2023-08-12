@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     passwords: 'users/passwords'
   }
   resources :votes
-  resources :menus, only: [:new, :create, :edit]
+  resources :menus
   resources :shops
   resources :categories
   resources :contacts, only: [:new, :create]

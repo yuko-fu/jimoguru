@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% if current_user.present? %>
-      <p>こんにちは、<%= current_user.name %>さん！</p>
-    <% else %>
-      <p>こんにちは、ゲストさん！</p>
-    <% end %>
-    <title>Jimoguru</title>
+    
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= include_gon %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
   </head>
 
   <body>
+  <div id="header">
+  <a href="<%= shops_path %>" class="logo">
+    <%= image_tag "jimoguru_logo.png", alt: "Jimoguruのロゴ" %>
+  </a>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class="logout_button" %>
+    <% else %>
+  </div>
   <%= content_tag(:div, flash[:alert], class: "alert alert-danger") if flash[:alert] %>
     <% if user_signed_in? %>
       <%= link_to "お店検索", shops_path, data: {"turbolinks" => false} %>

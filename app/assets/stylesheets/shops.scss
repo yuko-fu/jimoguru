@@ -11,8 +11,11 @@ p{
 }
 
 #container {
-  margin: 10px;
+  display: flex;
+  flex-direction: row
 }
+
+
 
 .graf {
   display: flex;
@@ -20,15 +23,15 @@ p{
   margin: 5px;
 }
 
-.data-name {
+.menu-link {
   padding: 0 6px;
   color: #404040;
   text-align: right;
-  width: 10%;
+  width: 15%;
 }
 
 .graf-bar-bg {
-  width: 50%;
+  width: 80%;
   background: #ffffff;
 }
 
@@ -62,6 +65,14 @@ p{
   margin-right: 1px;
 }
 
+.index_category {
+  width: 80px;
+  text-align: center;
+}
+.index_prefecture {
+  width: 80px;
+  text-align: center;
+}
 
 @media (max-width: 480px) {
   .menu-item {
@@ -69,3 +80,19 @@ p{
   }
 }
 
+#list {
+  flex: 5; /* 残りのスペースを占める */
+  padding: 20px; /* 余白 */
+  font-size: 15px;
+}
+
+#map {
+  flex: 3; /* 横幅の2倍のスペースを占める */
+  height: 600px;
+  width: 100%; /* 地図の横幅を100%に */
+}
+
+/* テーブルの行のホバースタイル */
+.shop_name a:hover {
+  background-color: #f0d3d3; /* ホバー時の背景色 */
+}

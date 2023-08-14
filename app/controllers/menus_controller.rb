@@ -9,11 +9,13 @@ class MenusController < ApplicationController
   # GET /menus/1 or /menus/1.json
 
   def show
-    
+    @menu = Menu.find(params[:id])
+    @votes_with_images = @menu.votes.where.not(image: nil)
+    # @votes_with_info = @menu.votes.with_attached_image
     # @menu = Menu.find(params[:id])
     # @votes = @menu.votes.group(:menu_id).count 
     # gon.votes = @votes
-    
+    expires_now
   end
 
   # GET /menus/new

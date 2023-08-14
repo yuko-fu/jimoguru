@@ -1,7 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  validates :name, presence: true  
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, 
+                                   length: { maximum: 30 }  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :votes, dependent: :destroy
@@ -19,4 +21,21 @@ class User < ApplicationRecord
   :福岡県,:佐賀県,:長崎県,:熊本県,:大分県,:宮崎県,:鹿児島県,
   :沖縄県
   ]
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+       user.password = SecureRandom.urlsafe_base64
+       user.name = "ゲストユーザー"
+    end
+  end
+  def self.guest_admin
+    find_or_create_by!(email: 'guest_admin@example.com') do |user|
+       user.password = SecureRandom.urlsafe_base64
+       user.name = "ゲスト管理者ユーザー"
+       user.admin = true
+    end
+  end
+  def guest?
+       role == "ゲストユーザー"
+     end
+ 
 end

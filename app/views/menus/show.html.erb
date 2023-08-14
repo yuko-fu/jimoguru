@@ -1,14 +1,26 @@
-<p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>メニュー名:</strong>
   <%= @menu.name %>
 </p>
 
 <p>
-  <strong>Shop:</strong>
-  <%= @menu.shop_id %>
+  <strong>店名:</strong>
+  <%= @menu.shop.name %>
 </p>
 
-<%= link_to 'Edit', edit_menu_path(@menu) %> |
-<%= link_to 'Back', menus_path %>
+<div class="photo-grid">
+  <% @votes_with_images.each do |vote| %>
+    <% if vote.image.attached? %> 
+      <div class="photo">
+        <%= image_tag vote.image, alt: 'Photo' %> 
+        <p class="vote-info">
+          投票日時: <%= vote.created_at.strftime('%Y-%m-%d') %><br>
+          一言コメント: <%= vote.comment %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<%= link_to 'Back', @menu.shop %>

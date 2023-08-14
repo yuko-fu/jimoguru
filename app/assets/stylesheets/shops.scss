@@ -10,6 +10,13 @@ p{
   margin: 10px;
 }
 
+#container {
+  display: flex;
+  flex-direction: row
+}
+
+
+
 .graf {
   display: flex;
   align-items: center;
@@ -74,14 +81,14 @@ p{
 }
 
 #list {
-  flex: 4; /* 残りのスペースを占める */
+  flex: 5; /* 残りのスペースを占める */
   padding: 20px; /* 余白 */
   font-size: 15px;
 }
 
 #map {
   flex: 3; /* 横幅の2倍のスペースを占める */
-  height: 700px;
+  height: 600px;
   width: 100%; /* 地図の横幅を100%に */
 }
 

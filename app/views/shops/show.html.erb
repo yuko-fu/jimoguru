@@ -20,32 +20,36 @@
 </p>
 
 <div id="map"></div>
-<script type="text/javascript">
-var marker = gon.shop
-      function initMap() {
-        var test ={lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-                  zoom: 15,
-                  center: test
-                  });
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(map);
+<script>
+  var shop = <%= raw @shop.to_json %>;
+  function initMap() {
+    var shopLocation = { lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %> };
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: shopLocation
+    });
 
-        var contentString = '住所：<%= @shop.address %>';
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-        var marker = new google.maps.Marker({
-                      position:test,
-                      map: map,
-                      title: contentString
-                    });
+    var transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
 
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-      }
-    </script>
+    var contentString = `<div><p>店名：<%= @shop.name %></p><p>住所：<%= @shop.address %></p></div>`;
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    var marker = new google.maps.Marker({
+      position: shopLocation,
+      map: map,
+      title: '<%= @shop.name %>'
+    });
+
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
+
+    
+  }
+</script>
     <script async defer
                   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
     </script>
@@ -59,7 +63,7 @@ var marker = gon.shop
     </div>
     
 
-    <div id="container"></div>
+    <div id="show-container"></div>
     <script>
     var dataFromDatabase = gon.votes;
     // しきい値
@@ -73,7 +77,7 @@ var marker = gon.shop
       variable.percentage = Math.round(variable.count / threshold * 100);
       
       // containerに追加
-      document.querySelector('#container').insertAdjacentHTML('beforeend', `
+      document.querySelector('#show-container').insertAdjacentHTML('beforeend', `
     <div class="graf">
       <a href="/menus/${variable.id}" class="menu-link">
         <span class="data-name">${variable.name}</span>

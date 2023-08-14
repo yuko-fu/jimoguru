@@ -15,7 +15,7 @@
  */
 body {
   background-color: rgba(245, 245, 220, 0.654);
-  background-image: url('assets/23950411.jpg'); /* ヘッダーの背景画像 */
+  background-image: url('assets/23950411.jpg'); ヘッダーの背景画像
 }
 
 .ranking_logo {
@@ -61,7 +61,7 @@ body {
   opacity: 0.6;
 }
 
-.logout_button {
+.header_button {
   text-decoration: none;
   color: white;
   background-color: rgb(251, 159, 22);
@@ -75,7 +75,7 @@ body {
   align-items: center; /* 垂直方向に中央に揃える */
 }
 
-.logout_button:hover {
+.heder_button:hover {
   background-color: rgb(251, 159, 22);
   color: rgba(0, 0, 0, 0.639);
   opacity: 0.6 ;
@@ -85,6 +85,6 @@ body {
   align-items: center;
 }
 
-.logout_button + .logout_button {
+.header_button + .header_button {
   margin-left: 10px; /* 2つ目のボタンの左マージンを追加 */
 }

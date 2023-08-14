@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/create'
   root "homes#index"
   devise_for :users, controllers: { 
     registrations: 'users/registrations' ,
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/guest_admin_sign_in', to: 'users/sessions#guest_admin_sign_in'
   end
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

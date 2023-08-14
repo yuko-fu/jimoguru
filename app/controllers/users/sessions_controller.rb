@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  # before_action :authenticate_user!
 
   def guest_sign_in
     user = User.guest
@@ -10,8 +11,8 @@ class Users::SessionsController < Devise::SessionsController
 
   def guest_admin_sign_in
     user = User.guest_admin
-    sign_in User.guest_admin
-    redirect_to after_sign_in_path_for(user), notice: 'ゲスト管理者としてログインしました。'
+    sign_in user
+    redirect_to shops_path, notice: 'ゲスト管理者としてログインしました。'
   end
   # before_action :configure_sign_in_params, only: [:create]
 

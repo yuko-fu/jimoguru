@@ -1,3 +1,19 @@
 // Place all the styles related to the Menus controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+}
+
+.photo {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.vote-info {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}

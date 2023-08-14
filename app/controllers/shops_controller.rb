@@ -14,6 +14,7 @@ class ShopsController < ApplicationController
       @shops = category.shops
     end
     @category_names = Category.pluck(:name)
+    @shops = Shop.all.page(params[:page]).per(10)
   end
   # GET /shops/1 or /shops/1.json
   def show

@@ -10,11 +10,8 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
-    @votes_with_images = @menu.votes.where.not(image: nil)
-    # @votes_with_info = @menu.votes.with_attached_image
-    # @menu = Menu.find(params[:id])
-    # @votes = @menu.votes.group(:menu_id).count 
-    # gon.votes = @votes
+    @votes = @menu.votes
+    
     expires_now
   end
 

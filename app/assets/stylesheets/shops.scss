@@ -31,11 +31,14 @@ p{
 }
 
 .graf-bar-bg {
-  width: 80%;
-  background: #ffffff;
+  width: 70%;
+  height: 30px;
+  background: #ffffff00;
 }
 
 .graf-bar {
+  display: flex;
+    justify-content: center;
   background: #f97d0194;
 }
 
@@ -94,5 +97,13 @@ p{
 
 /* テーブルの行のホバースタイル */
 .shop_name a:hover {
-  background-color: #f0d3d3; /* ホバー時の背景色 */
+  background-color: rgba(254, 191, 2, 0.665);
+}
+.show-map {
+  margin: 0 auto;
+
+}
+
+.show-shop-list {
+  padding-left: 50px;
 }

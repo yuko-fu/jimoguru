@@ -2,7 +2,7 @@
 <h1>お店検索</h1>
 
 <div id="container">
-  <div id="map"></div>
+  <div id="map" ></div>
   <div id="list">
     <!-- お店のリストをここに配置 -->
     <table>
@@ -30,6 +30,10 @@
           <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る' %>
           <%= submit_tag '検索' %>
         <% end %>
+      <div class="index-button">
+        <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+        <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
+      </div>
       </tbody>
     </table>
   </div>  
@@ -98,10 +102,7 @@
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script> 
-  <div class="index-button">
-    <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
-    <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
-  </div>
+  
   </tbody>
 </table>
 

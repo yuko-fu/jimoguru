@@ -19,13 +19,14 @@
       </a>
     </div>
     <div class="right-aligned-buttons">
-      <% if  current_user.admin? %>
+      <% if  current_user&.admin? %>
         <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}, class:"header_button"  %>
       <% end %>
       <%= link_to 'TOP',root_path, data: {"turbolinks" => false}, class:"header_button" %>
       <%= link_to "お問い合わせ", new_contact_path, class:"header_button" %>
-      <%= link_to " ログアウト ", destroy_user_session_path, method: :delete, class:"header_button" %>
+      <%= link_to " ログアウト ", destroy_user_session_path, method: :delete, class:"header_button"  %>
     </div>
+   
   </div>
   
     <% if notice %>
@@ -36,5 +37,10 @@
     <% end %>
     
     <%= yield %>
+    <footer>
+    <div class="footer-text">
+    © WEF2023
+    </div>
+    </footer>
   </body>
 </html>

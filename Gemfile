@@ -23,9 +23,16 @@ gem "image_processing"
 gem 'google_places'
 gem "aws-sdk-s3", require: false
 gem 'mini_magick'
-
+gem 'unicorn'
 
 group :development, :test do
+  gem 'capistrano', '3.16.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
 end

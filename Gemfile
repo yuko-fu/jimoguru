@@ -22,6 +22,8 @@ gem 'gon'
 gem "image_processing"
 gem 'google_places'
 
+
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
@@ -42,4 +44,4 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+gem 'kaminari'

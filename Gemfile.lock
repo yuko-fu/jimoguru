@@ -316,6 +316,7 @@ DEPENDENCIES
   google_places
   image_processing
   jbuilder (~> 2.7)
+  kaminari
   letter_opener_web
   listen (~> 3.3)
   pg (~> 1.1)

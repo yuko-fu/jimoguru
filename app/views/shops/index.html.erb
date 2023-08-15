@@ -2,34 +2,71 @@
 <h1>お店検索</h1>
 
 <div id="container">
-  <div id="map"></div>
+  <div id="map" ></div>
   <div id="list">
     <!-- お店のリストをここに配置 -->
-    <table>
-      <thead>
+    <table class="table">
+      <thead class="custom-header">
         <tr>
-          <th>店名</th>
-          <th>カテゴリー</th>
-          <th>都道府県</th>
-          <th>住所</th>
-          <th></th>
+          <th scope="col">店名</th>
+          <th scope="col" class="index_category" >カテゴリー</th>
+          <th scope="col"  class="index_prefecture">都道府県</th>
+          <th scope="col">住所</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
+      <%= form_tag shops_path, method: :get do %>
+        <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
+        <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る' %>
+        <%= submit_tag '検索' %>
+      <% end %>
+      <div class="index-button">
+        <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+        <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
+      </div>
+      <% @shops.each do |shop| %>
+        <tr data-href="<%= shop_path(shop) %>">
+          <td scope="col" class="shop_name"><%= shop.name %></td>
+          <td scope="col" class="index_category"><%= shop.category.name %></td>
+          <td scope="col" class="index_prefecture"><%= shop.prefecture %></td>
+          <td scope="col"><%= shop.address %></td>
+        </tr>
+        <%= paginate @shops %>
+      <% end %>
       
-        <% @shops.each do |shop| %>
-          <tr>
-            <td class="shop_name"><%= link_to shop.name, shop %></td>
-            <td class="index_category"><%= shop.category.name %></td>
-            <td class="index_prefecture"><%= shop.prefecture %></td>
-            <td ><%= shop.address %></td>
-          </tr>
-        <% end %>
-        <%= form_tag shops_path, method: :get do %>
-          <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
-          <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る' %>
-          <%= submit_tag '検索' %>
-        <% end %>
+    </tbody>
+  </table>
+  
+  <script>
+    // 行をクリックした際にリンク先に遷移する処理
+    document.addEventListener("DOMContentLoaded", function () {
+      var rows = document.querySelectorAll("tr[data-href]");
+      rows.forEach(function (row) {
+        row.addEventListener("click", function () {
+          window.location.href = row.dataset.href;
+        });
+        // マウスが上に乗ったときのホバー効果を追加
+        row.addEventListener("mouseenter", function () {
+          row.style.backgroundColor = "rgba(243, 216, 134, 0.24)"; // 背景色を変更
+        });
+        row.addEventListener("mouseleave", function () {
+          row.style.backgroundColor = ""; // ホバーを解除したときは元の背景色に戻す
+        });
+        // マウスカーソルがホバー可能な要素（リンクなど）にある場合はホバー効果を無効化
+        row.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("mouseenter", function (event) {
+            event.stopPropagation();
+            row.style.backgroundColor = ""; // ホバーを解除する
+          });
+          link.addEventListener("mouseleave", function (event) {
+            event.stopPropagation();
+          });
+        });
+      });
+    });
+  </script>
+
       </tbody>
     </table>
   </div>  
@@ -98,10 +135,7 @@
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&libraries=places&callback=initMap" async defer></script> 
-  <div class="index-button">
-    <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
-    <%= link_to 'ユーザー詳細画面', user_path(@user.id) %>
-  </div>
+  
   </tbody>
 </table>
 

@@ -15,8 +15,6 @@ p{
   flex-direction: row
 }
 
-
-
 .graf {
   display: flex;
   align-items: center;
@@ -31,11 +29,14 @@ p{
 }
 
 .graf-bar-bg {
-  width: 80%;
-  background: #ffffff;
+  width: 70%;
+  height: 30px;
+  background: #ffffff00;
 }
 
 .graf-bar {
+  display: flex;
+    justify-content: center;
   background: #f97d0194;
 }
 
@@ -66,11 +67,11 @@ p{
 }
 
 .index_category {
-  width: 80px;
+  width: 100px;
   text-align: center;
 }
 .index_prefecture {
-  width: 80px;
+  width: 100px;
   text-align: center;
 }
 
@@ -90,9 +91,23 @@ p{
   flex: 3; /* 横幅の2倍のスペースを占める */
   height: 600px;
   width: 100%; /* 地図の横幅を100%に */
+  margin-left: 20px;
 }
 
-/* テーブルの行のホバースタイル */
 .shop_name a:hover {
-  background-color: #f0d3d3; /* ホバー時の背景色 */
+  background-color: rgba(254, 191, 2, 0.665);
+}
+.show-map {
+  margin: 0 auto;
+
+}
+
+.show-shop-list {
+  padding-left: 50px;
+}
+
+.custom-header {
+  background-color: #805d13; /* ヘッダーの背景色 */
+  color: #ffffff; /* ヘッダーの文字色 */
+  height: 40px; /* 適宜高さを調整 */
 }

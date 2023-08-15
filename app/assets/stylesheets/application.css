@@ -16,6 +16,9 @@
 body {
   background-color: rgba(245, 245, 220, 0.654);
   background-image: url('assets/23950411.jpg'); ヘッダーの背景画像
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .ranking_logo {
@@ -75,11 +78,18 @@ body {
   align-items: center; /* 垂直方向に中央に揃える */
 }
 
-.heder_button:hover {
-  background-color: rgb(251, 159, 22);
-  color: rgba(0, 0, 0, 0.639);
-  opacity: 0.6 ;
+.header_button a {
+  text-decoration: none; /* アンダーラインを非表示にする */
+  display: inline-block; 
+  transition: background-color 0.3s, opacity 0.3s, color 0.3s; /* トランジションを追加 */
+  background-color: rgb(247, 205, 79);
 }
+
+.header_button a:hover {
+  background-color: rgb(247, 205, 79);
+    
+}
+
 .right-aligned-buttons {
   display: flex;
   align-items: center;
@@ -88,3 +98,21 @@ body {
 .header_button + .header_button {
   margin-left: 10px; /* 2つ目のボタンの左マージンを追加 */
 }
+
+footer {
+  background-color: rgba(165, 43, 230, 0);
+  width: 100%;
+  height: 50px;
+  /* position: sticky; */
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  color: rgb(0, 0, 0);
+  align-items: center; /* 垂直方向に中央に揃える */
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.footer-text {
+  line-height: 50px;
+} */

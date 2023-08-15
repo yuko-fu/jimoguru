@@ -14,27 +14,18 @@ class Users::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to shops_path, notice: 'ゲスト管理者としてログインしました。'
   end
-  # before_action :configure_sign_in_params, only: [:create]
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
-  # POST /resource/sign_in
-  # def create
-  #   super
-  # end
-
-  # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    # セッションを破棄
+    session[:user_id] = nil
+    # ログアウト後にトップ画面にリダイレクト
+    redirect_to root_path, notice: 'ログアウトしました'
+  end
 
   # protected
 
-  # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_in_params
-  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
+  # def after_sign_in_path_for(resource)
+  #   shops_path
   # end
+  
 end

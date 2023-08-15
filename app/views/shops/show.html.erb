@@ -1,25 +1,27 @@
 <p id="notice"><%= notice %></p>
-<p>
+<div class="show-shop-list">
+  <p>
   <strong>店名:</strong>
   <%= @shop.name %>
-</p>
+  </p>
 
-<p>
-  <strong>都道府県:</strong>
-  <%= @shop.prefecture %>
-</p>
-
-<p>
-  <strong>住所:</strong>
-  <%= @shop.address %>
-</p>
-
-<p>
+  <p>
   <strong>カテゴリー:</strong>
   <%= @shop.category.name %>
-</p>
+  </p>
 
-<div id="map"></div>
+  <p>
+  <strong>都道府県:</strong>
+  <%= @shop.prefecture %>
+  </p>
+
+  <p>
+  <strong>住所:</strong>
+  <%= @shop.address %>
+  </p>
+</div>
+
+<div id="map" class="show-map" ></div>
 <script>
   var shop = <%= raw @shop.to_json %>;
   function initMap() {
@@ -55,7 +57,7 @@
     </script>
     <style type="text/css">
       #map { height: 400px;
-            width: 80%;}
+            width: 90%;}
     </style>
 
     <div style="display: flex; justify-content: center;">
@@ -83,18 +85,20 @@
         <span class="data-name">${variable.name}</span>
       </a>
     
-          <div class="graf-bar-bg">
-          <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
-          </div></div>`);
+      <div class="graf-bar-bg">
+        <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
+      </div>
+    </div>`);
       
       // widthを指定
       document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
     });
     </script>
 
-
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
   <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn btn-primary" %>
 <% end %>
-<%= link_to 'ショップ情報編集', edit_shop_path(@shop), data: {"turbolinks" => false} %> |
+<% if  current_user&.admin? %>
+  <%= link_to 'ショップ情報編集', edit_shop_path(@shop), data: {"turbolinks" => false} %> 
+<% end %>
 <%= link_to 'topページ', shops_path, data: {"turbolinks" => false} %>

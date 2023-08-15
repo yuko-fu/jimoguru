@@ -21,7 +21,8 @@ gem 'geocoder'
 gem 'gon'
 gem "image_processing"
 gem 'google_places'
-
+gem "aws-sdk-s3", require: false
+gem 'mini_magick'
 
 
 group :development, :test do

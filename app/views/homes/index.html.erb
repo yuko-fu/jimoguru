@@ -1,0 +1,67 @@
+<div class="slide-content">  
+  <div class="slide">
+    <img src="assets/pizza.jpg" />
+    <img src="assets/Okonomiyaki.jpg" />
+    <img src="assets/Roast beef bowl.jpg" />
+    <img src="assets/dango.jpg" />
+    <img src="assets/pafeit.jpg" />
+    <img src="assets/Croissant.jpg" />
+    <img src="assets/parfait.jpg" />
+  </div>
+  <div class="link-overlay">
+    <p>説明文</p>
+    <div class="top-button">
+      <%= link_to "新規登録", new_user_registration_path %>
+    </div>
+    <div class="top-button">
+      <%= link_to "ログイン", new_user_session_path %>
+    </div>
+    <div class="top-button">
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+    </div>
+    <div class="top-button">
+      <%= link_to 'ゲストログイン（管理者用）', users_guest_admin_sign_in_path, method: :post %>
+    </div>
+  </div>
+</div>
+    
+
+
+  <p>
+    <input type="range" id="slide_speed" value="4000" min="100" max="10000">
+  </p>
+
+
+<style>
+
+
+
+</style> 
+
+<script>
+window.addEventListener('load', function () {
+	viewSlide('.slide img');
+});
+function viewSlide(className, slideNo = -1)
+{
+	let imgArray = document.querySelectorAll(className);
+	if (slideNo >= 0) {
+		//初回以外は現在のスライドを消す
+		imgArray[slideNo].style.opacity = 0;
+	}
+	slideNo++;
+	if (slideNo >= imgArray.length) {
+		slideNo = 0; //次のスライドがなければ最初のスライドへ戻る
+	}
+	imgArray[slideNo].style.opacity = 1;
+	let msec = document.getElementById('slide_speed').value;
+	setTimeout(function(){viewSlide(className, slideNo);}, msec);
+}
+</script>
+
+
+
+
+
+  
+

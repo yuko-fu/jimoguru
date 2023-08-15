@@ -1,0 +1,17 @@
+
+<!-- app/views/contacts/new.html.erb -->
+
+<h1>お問い合わせフォーム</h1>
+
+<%= form_for @contact do |f| %>
+  <%= f.label :name, 'お名前' %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :email, 'メールアドレス' %>
+  <%= f.email_field :email %>
+  
+  <%= f.label :message, 'お問い合わせ内容' %>
+  <%= f.text_area :content %>
+  
+  <%= f.submit '送信する' %>
+<% end %>

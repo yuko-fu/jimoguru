@@ -7,6 +7,7 @@ class Users::PasswordsController < Devise::PasswordsController
     if params[:user][:email][:prefecture].downcase == 'guest@example.com'
       redirect_to shops_path, alert: 'ゲストユーザーのパスワード、都道府県の再設定はできません。'
     end
+  end
   def ensure_normal_admin_user
     if params[:user][:email][:prefecture].downcase == 'guest_admin@example.com'
       redirect_to shops_path, alert: 'ゲストユーザーのパスワード、都道府県の再設定はできません。'

@@ -9,12 +9,17 @@ body {
 p{
   margin: 10px;
 }
-
+select {
+  margin-bottom: 20px;
+}
 #container {
   display: flex;
   flex-direction: row
 }
 
+.index-title {
+  margin-left: 20px;
+}
 .graf {
   display: flex;
   align-items: center;
@@ -94,6 +99,13 @@ p{
   margin-left: 20px;
 }
 
+#form-container {
+  position: absolute;
+  top: 10px; /* Adjust the distance from the top of the map */
+  left: 10px; /* Adjust the distance from the left of the map */
+  z-index: 1000; /* Make sure the form is displayed above the map */
+  /* Additional styling for the form container */
+}
 .shop_name a:hover {
   background-color: rgba(254, 191, 2, 0.665);
 }
@@ -110,4 +122,8 @@ p{
   background-color: #805d13; /* ヘッダーの背景色 */
   color: #ffffff; /* ヘッダーの文字色 */
   height: 40px; /* 適宜高さを調整 */
+}
+
+.index-button {
+  margin-left: auto;
 }

@@ -19,6 +19,12 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 0px 20px;
+}
+
+
+.page-content {
+  margin-bottom: 100px;
 }
 
 .ranking_logo {
@@ -102,15 +108,14 @@ body {
 footer {
   background-color: rgba(165, 43, 230, 0);
   width: 100%;
-  height: 50px;
-  /* position: sticky; */
-  position: absolute;
+  position:  fixed;
   bottom: 0;
   display: flex;
   color: rgb(0, 0, 0);
   align-items: center; /* 垂直方向に中央に揃える */
   justify-content: center;
   margin-top: 10px;
+  padding: auto;
 }
 
 .footer-text {
@@ -118,6 +123,10 @@ footer {
 }
 
 /*ページネーション自体のデザイン*/
+ul.pagination {
+  
+}
+
 .pagination>li>a {          
   border: none;     /*枠線をなくす*/
   color: #696969;   /*文字の色を変える*/

@@ -55,7 +55,7 @@ body {
 }
 
 .logo img {
-  width: 200px; /* 幅を200pxに設定 */
+  width: 200px; 
   height: auto; /* 高さを自動調整 */
   border-radius: 10px; /* 画像の角を丸くする */
   /* 他のスタイルを追加できます */

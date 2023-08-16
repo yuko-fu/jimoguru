@@ -46,7 +46,7 @@ body {
     display: flex;
     justify-content: flex-end;
     padding: 20px; /* ヘッダーの余白 */
-    color: white; 文字の色を白に
+    color: white; 
     height: 70px; /* ヘッダーの高さを設定 */
 }
 

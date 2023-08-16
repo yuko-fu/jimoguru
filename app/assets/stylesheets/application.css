@@ -15,7 +15,7 @@
  */
 body {
   background-color: rgba(245, 245, 220, 0.654);
-  background-image: url('assets/23950411.jpg'); ヘッダーの背景画像
+  background-image: url('assets/23950411.jpg'); 
   display: flex;
   flex-direction: column;
   height: 100%;

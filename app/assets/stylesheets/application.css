@@ -45,7 +45,7 @@ body {
     /* text-align: center; ヘッダーのテキストを中央揃え */
     display: flex;
     justify-content: flex-end;
-    padding: 20px;
+    padding: 20px 20px 60px 20p;
     color: white; 
     height: 70px; /* ヘッダーの高さを設定 */
 }

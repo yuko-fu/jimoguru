@@ -11,7 +11,7 @@
 .slide {
   width: 70%;
   height: 700px;
-  padding-top: 200px;
+  padding-top: 20px;
   object-fit: contain;
   position: absolute;
   display: flex;
@@ -22,7 +22,7 @@
 
 .slide img {
   width: auto; /* 画像の幅を調整 */
-  height: 100%; /* 高さは自動調整 */
+  height: 80%; /* 高さは自動調整 */
   max-width: 100%;
   position:absolute;
 	opacity:0;

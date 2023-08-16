@@ -1,6 +1,6 @@
 .slide-container {
   width: 100%;
-  height: 500px;
+  height: 700px;
   overflow: hidden;
   position: relative;
   display: flex; /* Flexレイアウトを使います */
@@ -11,6 +11,7 @@
 .slide {
   width: 70%;
   height: 700px;
+  padding-top: 200px;
   object-fit: contain;
   position: absolute;
   display: flex;

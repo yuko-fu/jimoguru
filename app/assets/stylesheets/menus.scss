@@ -12,6 +12,11 @@
   margin-bottom: 10px;
 }
 
+.photo img {
+  max-width: 100%;
+  height: auto;
+}
+
 .vote-info {
   font-size: 14px;
   color: #666;

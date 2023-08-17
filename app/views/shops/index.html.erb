@@ -30,13 +30,18 @@
           <td scope="col"><%= shop.address %></td>
         </tr>
       <% end %>
+    </table>
+    <div id="pagination" >
+      <%= paginate @shops %>
+    </div>
+    <div id="index-button">
+      <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+    </div>
   </div>
 </div>
-      </table>
-      <%= paginate @shops %>
-      <div class="index-button">
-        <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
-      </div>
+
+      
+
       <script>
         // 行をクリックした際にリンク先に遷移する処理
         document.addEventListener("DOMContentLoaded", function () {

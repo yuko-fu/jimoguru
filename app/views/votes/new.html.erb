@@ -41,17 +41,59 @@ var marker = gon.shop
 <div id="menuList" >
   <%= form_with model: @vote, local: true do |form| %>
     <%= form.label :投票メニュー名 %><br>
-    <div class="menu-item" class="menu-items">
-    <%= form.collection_radio_buttons(:menu_id, @menus, :id, :name) %>
+    <div class="menu-item" >
+      <div  class="menu-button">
+        <%= form.collection_radio_buttons(:menu_id, @menus, :id, :name)  %>
+      </div>
     </div>
     <%= form.label :メニュー価格の価格など一言情報 %>
     <%= form.text_field :content %><br>
     <%= form.label :写真投稿 %>
-    <%= form.file_field :image %><br>
+    <div class="image-upload">
+      <%= form.file_field :image, id: "image-input", onchange: "previewImage(this)" %><br>
+      <div id="image-preview"></div>
+    </div>
     <%= form.hidden_field :shop_id, :value => @shop.id %><br>
     <%= form.submit %>
   <% end %>
 </div>
+
+<script>
+function previewImage(input) {
+  var preview = document.getElementById('image-preview');
+  var file = input.files[0];
+  var reader = new FileReader();
+
+  reader.onload = function(e) {
+    var img = new Image();
+    img.src = e.target.result;
+
+    img.onload = function() {
+      var canvas = document.createElement('canvas');
+      var maxWidth = 100; // 最大幅を設定
+      var scale = maxWidth / img.width;
+      var newWidth = maxWidth;
+      var newHeight = img.height * scale;
+
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
+
+      var preview = document.getElementById('image-preview');
+      preview.innerHTML = '<img src="' + canvas.toDataURL('image/jpeg') + '" alt="Image Preview" class="small-image-preview" />';
+    };
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.innerHTML = '';
+  }
+}
+</script>
+
 
   <p>新しいメニューを投票</p>
   <%= form_with model: @menu, url: menus_path, local: true  do |form| %>

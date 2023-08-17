@@ -1,16 +1,116 @@
 // Place all the styles related to the Votes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.menu-item {
-  display: flex;
-  align-items: center;
+// .menu-item {
+//   display: flex;
+//   align-items: center;
 
+// }
+.field {
+  margin-left: 20px;
+  font-size: 18px;
 }
+.page-title {
+  color: #805d13;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+
+#menuSection {
+  display: flex;
+  margin: 0 30px;
+  margin-left: 50px;
+}
+
+#menuList{
+  flex: 5;
+}
+#new-menu {
+  flex: 2;
+}
+
+#menuList h3 {
+  color: #805d13;
+  font-weight: bold;
+}
+
+#new-menu h3{
+  color: #805d13;
+  font-weight: bold;
+}
+
+.back-link {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 10px; /* パディングの調整（上下 10px、左右 20px） */
+  /* その他のスタイルも追加できます */
+}
+
+.form-label-after-space::after {
+  content: " "; /* 余白を表現するための空白要素 */
+  margin-left: 10px; /* 余白の大きさを調整 */
+  display: inline-block; /* インライン要素として表示 */
+}
+
 
 .menu-item img {
   max-width: 100px; /* 画像の最大幅を調整 */
   height: auto;
+  margin-bottom: 10px; 
 }
 .menu-button {
-  margin: 0px 0px 5px 10px;
+  display: flex; /* Flex レイアウトを適用 */
+  flex-wrap: wrap; /* 幅が足りない場合にラップして折り返す */
+  gap: 10px; /* アイテム間の間隔 */
+}
+
+/* メニュー名ラベルのスタイル */
+.menu-label {
+  display: flex; /* Flex レイアウトを適用 */
+  align-items: center; /* ラジオボタンを垂直中央に配置 */
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+}
+.menu-label:hover {
+  color: #459bf2; /* マウスオーバー時の背景色 */
+}
+
+/* ラジオボタンのスタイル */
+.menu-label input[type="radio"] {
+  margin: 0; /* デフォルトのマージンを削除 */
+}
+
+/* メニュー名のスタイル */
+.menu-label span {
+  margin-left: 5px; /* メニュー名との間隔を調整 */
+}
+
+.image-upload-container {
+  display: flex;
+  align-items: center; /* 縦方向中央揃え */
+  gap: 10px; /* 要素間の間隔 */
+}
+
+#menu-item label{
+  // margin-right: 20px; /* 任意の余白サイズを設定 */
+}
+
+form input[type="submit"] {
+  margin-top: 20px; /* 適切なマージンを調整 */
+  text-decoration: none;
+  color: white;
+  background-color: rgb(240, 144, 19);
+  // font-weight: bold;
+  transition: background-color 0.5s;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 5px 5px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
+  font-weight: bold;
+}
+form input[type="submit"]:hover {
+  background-color: rgb(247, 205, 79);
 }

@@ -1,4 +1,4 @@
-<h1>New Vote</h1>
+<h1 class="page-title">おすすめメニュー投票</h1>
 <%= render 'form', vote: @vote %>
 <div id="map"></div>
 <script type="text/javascript">
@@ -32,32 +32,41 @@ var marker = gon.shop
                   src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
     </script>
     <style type="text/css">
-      #map { height: 200px;
-            width: 70%;}
+      #map { height: 400px;
+            width: 100%;}
     </style>
 
 <div id="container"></div>
+<br>
 
-<div id="menuList" >
-  <%= form_with model: @vote, local: true do |form| %>
-    <%= form.label :投票メニュー名 %><br>
-    <div class="menu-item" >
-      <div  class="menu-button">
-        <%= form.collection_radio_buttons(:menu_id, @menus, :id, :name)  %>
+<div id="menuSection">
+  <div id="menuList">
+    <%= form_with model: @vote, local: true do |form| %>
+      <h3><%= form.label :【投票メニュー名】 %></h3><br>
+      <div id="menu-item" >
+        <div  class="menu-button">
+        <% @menus.each do |menu| %>
+          <label class="menu-label">
+            <%= form.radio_button :menu_id, menu.id %>
+            <%= menu.name %>
+          </label>
+        <% end %>
+        </div>
       </div>
-    </div>
-    <%= form.label :メニュー価格の価格など一言情報 %>
-    <%= form.text_field :content %><br>
-    <%= form.label :写真投稿 %>
-    <div class="image-upload">
-      <%= form.file_field :image, id: "image-input", onchange: "previewImage(this)" %><br>
-      <div id="image-preview"></div>
-    </div>
-    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
-    <%= form.submit %>
-  <% end %>
-</div>
-
+      <%= form.label :メニュー価格の価格など一言投稿 %>
+      <%= form.text_field :content, placeholder: "10文字以内(例:税込500円など)", size: 26 %><br>
+      <%= form.label :写真投稿 %>
+      <div class="image-upload">
+        <%= form.file_field :image, id: "image-input", onchange: "previewImage(this)" %><br>
+        <div id="image-preview"></div>
+      </div>
+      <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+      <%= form.submit :"投 票" %>
+    <% end %>
+    <br>
+    <%= link_to '戻る', shop_path(@shop), class: 'back-link', data: {"turbolinks" => false} %>
+  </div>
+  
 <script>
 function previewImage(input) {
   var preview = document.getElementById('image-preview');
@@ -93,13 +102,16 @@ function previewImage(input) {
   }
 }
 </script>
+<br>
+<br>
+  <div id="new-menu">
+    <h3>【新しいメニューを登録】</h3><br>
+    <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
+      <%= form.label :新規メニュー投稿 %>
+      <%= form.text_field :name, placeholder: "例:マルゲリータ" %><br>
+      <%= form.hidden_field :shop_id, :value => @shop.id %><br>
+      <%= form.submit 'メニュー登録' %>
+    <% end %>
+  </div>
+</div>
 
-
-  <p>新しいメニューを投票</p>
-  <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
-    <%= form.label :新規投稿メニュー名 %>
-    <%= form.text_field :name %><br>
-    <%= form.hidden_field :shop_id, :value => @shop.id %><br>
-    <%= form.submit 'メニュー登録' %>
-  <% end %>
-<%= link_to 'Back', shop_path(@shop), data: {"turbolinks" => false} %>

@@ -11,17 +11,16 @@
 
 <div class="photo-grid">
   <% @votes.each do |vote| %>
-    <% if vote.image.attached? %> 
-      <div class="photo">
+    <div class="photo">
+      <% if vote.image.attached? %> 
         <%= image_tag vote.image, alt: 'Photo' %> 
-        <p class="vote-info">
-          ユーザー名: <%= vote.user.name %><br>
-          投票日時: <%= vote.created_at.strftime('%Y-%m-%d') %><br>
-          一言コメント: <%= vote.content %>
-        </p>
-      </div>
-    <% end %>
+      <% end %>
+      <p class="vote-info">
+        ユーザー名: <%= vote.user.name %><br>
+        投票日時: <%= vote.created_at.strftime('%Y-%m-%d') %><br>
+        一言コメント: <%= vote.content %>
+      </p>
+    </div>
   <% end %>
 </div>
-
 <%= link_to 'Back', @menu.shop %>

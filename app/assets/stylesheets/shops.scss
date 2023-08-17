@@ -34,6 +34,9 @@ select {
 }
 
 .graf-bar-bg {
+  flex: 1;
+  display: flex;
+  align-items: center;
   width: 70%;
   height: 30px;
   background: #ffffff00;
@@ -41,7 +44,7 @@ select {
 
 .graf-bar {
   display: flex;
-    justify-content: center;
+  justify-content: center;
   background: #f97d0194;
 }
 
@@ -90,7 +93,17 @@ select {
   flex: 5; /* 残りのスペースを占める */
   padding: 20px; /* 余白 */
   font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 中央寄せ */
 }
+
+.back-link {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 10px; /* パディングの調整（上下 10px、左右 20px） */
+  /* その他のスタイルも追加できます */
+}
+
 
 #map {
   flex: 3; /* 横幅の2倍のスペースを占める */
@@ -124,14 +137,6 @@ select {
   height: 40px; /* 適宜高さを調整 */
 }
 
-#index-button a {
-  margin-left: auto;
-  background-color: rgb(251, 159, 22);
-  font-size: x-large;
-}
-ul.pagination {
-  
-}
 
 .pagination>li>a {          
   border: none;     /*枠線をなくす*/
@@ -151,5 +156,49 @@ ul.pagination {
 
 .page-item li {
   background: #696969;
+}
 
+.centered-pagination-and-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pagination a {
+  color: rgb(240, 144, 19);
+}
+
+#index-button {
+
+  margin-top: 20px; /* 適切なマージンを調整 */
+  text-decoration: none;
+  color: white;
+  background-color: rgb(240, 144, 19);
+  // font-weight: bold;
+  transition: background-color 0.5s;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 5px 2px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
+}
+
+#index-button a {
+  font-size: large;
+  background-color: rgb(255, 255, 255);
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: rgb(240, 144, 19);
+}
+#pagination .generic  {
+  background-color: rgb(240, 144, 19);
+}
+
+.rank-image {
+  width: 30px; /* 画像の幅 */
+  height: 30px; /* 画像の高さ */
+  margin-right: 5px; /* 画像とテキストの間隔 */
+  vertical-align: middle; /* 画像をテキストの中央に配置 */
 }

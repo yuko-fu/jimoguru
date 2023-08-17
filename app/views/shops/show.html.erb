@@ -73,15 +73,26 @@
 
     dataFromDatabase.sort((a, b) => b.count - a.count);
     // データベースから取得したデータをループ処理
-    dataFromDatabase.forEach(variable => {
+    dataFromDatabase.forEach((variable, index) => {
       
       // しきい値からパーセンテージを計算
       variable.percentage = Math.round(variable.count / threshold * 100);
-      
+
+      // ランクに応じた画像を選択
+      var rankImage = '';
+      if (index === 0) {
+        rankImage = '<img src="<%= asset_path('no1.png') %>" class="rank-image" alt="1st">';
+      } else if (index === 1) {
+        rankImage = '<img src="<%= asset_path('no2.png') %>" class="rank-image" alt="2nd">';
+      } else if (index === 2) {
+        rankImage = '<img src="<%= asset_path('no3.png') %>" class="rank-image" alt="3rd">';
+      }
+
       // containerに追加
       document.querySelector('#show-container').insertAdjacentHTML('beforeend', `
     <div class="graf">
       <a href="/menus/${variable.id}" class="menu-link">
+        ${rankImage}
         <span class="data-name">${variable.name}</span>
       </a>
     
@@ -101,4 +112,4 @@
 <% if  current_user&.admin? %>
   <%= link_to 'ショップ情報編集', edit_shop_path(@shop), data: {"turbolinks" => false} %> 
 <% end %>
-<%= link_to '戻る', shops_path, data: {"turbolinks" => false} %>
+<%= link_to '戻る', shops_path, class: 'back-link' ,data: {"turbolinks" => false} %>

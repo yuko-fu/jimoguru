@@ -19,8 +19,8 @@ shops = []
   )
   
   # Set latitude and longitude
-  latitude = rand(35.0..37.0)
-  longitude = rand(135.0..137.0)
+  latitude = rand(35.00000..37.00000)
+  longitude = rand(135.00000..137.00000)
   shop.latitude = latitude
   shop.longitude = longitude
   

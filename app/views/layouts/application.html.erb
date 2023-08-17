@@ -23,9 +23,9 @@
         </a>
       </div>
       <div class="right-aligned-buttons">
-        <% if  current_user&.admin? %>
-          <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}, class:"header_button"  %>
-          <%= link_to '投票履歴', user_path(current_user), class:"header_button" %>
+        <% if current_user %>
+          <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}, class:"header_button" if current_user.admin %>
+          <%= link_to '投票履歴', user_path(current_user), class:"header_button" unless current_user.email == "guest@example.com" %>
         <% end %>
         <%= link_to 'TOP',root_path, data: {"turbolinks" => false}, class:"header_button" %>
         <%= link_to "お問い合わせ", new_contact_path, class:"header_button" %>

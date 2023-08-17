@@ -20,6 +20,7 @@ body {
   flex-direction: column;
   height: 100%;
   padding: 0px 20px;
+  width: 100%;
 }
 
 
@@ -52,6 +53,7 @@ body {
 
 .logo {
   margin-right: auto;
+  margin-left: 5px;
 }
 
 .logo img {
@@ -78,6 +80,7 @@ body {
   transition: background-color 0.3s;
   margin-top: auto;
   margin-bottom: auto;
+  margin-right: 18px;
   padding: 7px 10px;
   border-radius: 3px;
   display: flex; /* ボタンを横並びにする */

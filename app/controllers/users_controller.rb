@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def withdraw
-    if current_user.update(is_valid: false)
+    if current_user.update(is_valid: true)
       sign_out current_user
       redirect_to root_path, notice: "退会が完了しました。"
     else
@@ -17,12 +17,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def reject_inactive_user
-    @user = User.find_by(name: params[:user][:name])
-    if @user
-      if @user.valid_password?(params[:user][:password]) && !@user.is_valid
-        redirect_to new_user_session_path
-      end
-    end
-  end
 end

@@ -176,7 +176,7 @@ select {
   color: rgb(240, 144, 19);
 }
 
-#index-button {
+.index-button {
 
   margin-top: 20px; /* 適切なマージンを調整 */
   text-decoration: none;
@@ -192,7 +192,7 @@ select {
   transition: background-color 0.3s, opacity 0.3s, color 0.3s;
 }
 
-#index-button a {
+.index-button a {
   font-size: large;
   background-color: rgb(255, 255, 255);
   padding: 2px 5px;

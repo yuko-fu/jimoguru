@@ -1,9 +1,12 @@
-<h2>ユーザー情報変更画面</h2>
-    <% if @user.email == 'guest@example.com'%>
-      <p>ゲストユーザーはユーザー情報の編集ができません。</p>
-    <% else %>
+<h2>ユーザー編集</h2>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :ユーザー名 %><br />
+    <%= f.text_field :name, autofocus: true, placeholder: "例: トマトマト" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -11,42 +14,44 @@
   </div>
 
   <div class="field">
-    <%= f.label :都道府県 %>
+    <%= f.label :都道府県 %><br />
     <%= f.select :prefecture,User.prefectures.keys, { prompt: '選択してください' } %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(変更したくない場合は空白のままにしてください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password",placeholder: "例: 987YourPassword" %>
+    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "new_password" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password",placeholder: "例: 987YourPassword" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new_password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(変更を確認するには現在のパスワードが必要です)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password",placeholder: "例: YourPassword123" %>
+    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "your_password" %>
   </div>
-<div class="user-edit-bottom">
+
   <div class="actions">
-    <%= f.submit "変更" %>
+    <%= f.submit t('.update') %>
   </div>
-  <% end %>
 <% end %>
-  <h3>退会する</h3>
+
+<h3>退会する</h3>
 
   <%= link_to "退会する", confirm_withdraw_user_path(current_user), class: "btn btn-danger" %>
   <br>
   <br>
   <%= link_to "戻る", :back, class: "back-link" %>
 </div>
+
+

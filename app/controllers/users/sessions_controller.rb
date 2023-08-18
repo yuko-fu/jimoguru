@@ -4,7 +4,9 @@ class Users::SessionsController < Devise::SessionsController
   before_action :reject_inactive_user, only: [:create]
   before_action :authenticate_user!
   
-
+  def create
+    super
+  end
 
 
   def guest_sign_in
@@ -33,7 +35,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def reject_inactive_user
-    @user = User.find_by(name: params[:user][:name])
+    @user = User.find_by(email: params[:user][:email])
     if @user
       if @user.valid_password?(params[:user][:password]) && !@user.is_valid
         redirect_to new_user_session_path

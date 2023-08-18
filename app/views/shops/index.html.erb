@@ -34,8 +34,9 @@
     <div id="pagination">
       <%= paginate @shops %>
     </div>
-    <div id="index-button">
-      <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+    <div class="index-button">
+      <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>  
+      <%= link_to 'カテゴリー新規登録', new_category_path, data: {"turbolinks" => false} if current_user.admin %>
     </div>
   </div>
 </div>

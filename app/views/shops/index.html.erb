@@ -1,5 +1,5 @@
-
-<h3 class="index-title">お店検索</h3>
+<b>
+<h2 class="index-title">お店を探す</h2>
 
 <div id="container">
   <div id="map" ></div>
@@ -7,21 +7,21 @@
     <table class="table">
       <thead class="custom-header">
         <tr>
-          <th scope="col">店名</th>
+          <th scope="col" >店名</th>
           <th scope="col" class="index_category" >カテゴリー</th>
           <th scope="col"  class="index_prefecture">都道府県</th>
           <th scope="col">住所</th>
           <th scope="col"></th>
         </tr>
       </thead>
-    <tbody>
-    <div class="index-bar">
-      <%= form_tag shops_path, method: :get do %>
-        <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
-        <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る'  %>
-        <%= submit_tag '検索' %>
-      <% end %>
-    </div>
+      <tbody>
+      <div class="index-bar">
+        <%= form_tag shops_path, method: :get do %>
+          <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
+          <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る'  %>
+          <%= submit_tag '検索' %>
+        <% end %>
+      </div>
       <% @shops.each do |shop| %>
         <tr data-href="<%= shop_path(shop) %>">
           <td scope="col" class="shop_name"><%= shop.name %></td>
@@ -30,41 +30,49 @@
           <td scope="col"><%= shop.address %></td>
         </tr>
       <% end %>
+    </table>
+    <div id="pagination">
+      <%= paginate @shops %>
+    </div>
+    <div id="index-button">
+      <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
+    </div>
   </div>
 </div>
-      </table>
-      <%= paginate @shops %>
-      <div class="index-button">
-        <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>
-      </div>
-      <script>
-        // 行をクリックした際にリンク先に遷移する処理
-        document.addEventListener("DOMContentLoaded", function () {
-          var rows = document.querySelectorAll("tr[data-href]");
-          rows.forEach(function (row) {
-            row.addEventListener("click", function () {
-              window.location.href = row.dataset.href;
-            });
-            // マウスが上に乗ったときのホバー効果を追加
-            row.addEventListener("mouseenter", function () {
-              row.style.backgroundColor = "rgba(243, 216, 134, 0.24)"; // 背景色を変更
-            });
-            row.addEventListener("mouseleave", function () {
-              row.style.backgroundColor = ""; // ホバーを解除したときは元の背景色に戻す
-            });
-            // マウスカーソルがホバー可能な要素（リンクなど）にある場合はホバー効果を無効化
-            row.querySelectorAll("a").forEach(function (link) {
-              link.addEventListener("mouseenter", function (event) {
-                event.stopPropagation();
-                row.style.backgroundColor = ""; // ホバーを解除する
-              });
-              link.addEventListener("mouseleave", function (event) {
-                event.stopPropagation();
-              });
-            });
-          });
-        });
-      </script>
+
+      
+
+<script>
+function setupRowClickHandlers() {
+  var rows = document.querySelectorAll("tr[data-href]");
+  rows.forEach(function (row) {
+    row.addEventListener("click", function () {
+      window.location.href = row.dataset.href;
+    });
+    row.addEventListener("mouseenter", function () {
+      row.style.backgroundColor = "rgba(243, 216, 134, 0.24)";
+    });
+    row.addEventListener("mouseleave", function () {
+      row.style.backgroundColor = "";
+    });
+    row.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("mouseenter", function (event) {
+        event.stopPropagation();
+        row.style.backgroundColor = "";
+      });
+      link.addEventListener("mouseleave", function (event) {
+        event.stopPropagation();
+      });
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", setupRowClickHandlers);
+
+// Turbolinksのページ遷移に対応するための処理
+document.addEventListener("turbolinks:load", setupRowClickHandlers);
+</script>
+
     </div>  
   
       <script>
@@ -112,7 +120,7 @@
               closeInfoWindows();
               infoWindow.setContent(
                 `<div class='info-window-content'>
-                  <a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>
+                  <a href='/shops/${shop.id}' class='custom-link' style="outline: none;">${shop.name}</a>
                   <p>カテゴリー: ${categoryName[shop.category_id-1]}</p>
                   <p>住所: ${shop.address}</p>
                 </div>`

@@ -1,22 +1,19 @@
 <h1>お店新規登録</h1>
 
-
-<%= link_to 'お店新規登録', new_shop_path %>
 <%= form_for @shop, url: { action: :create }, method: :post do |f| %>
-  <%= f.label :name %>
+  <%= f.label :店名 %>
   <%= f.text_field :name, placeholder: "店名を入力してください" %>
   <br>
   <%= f.label :都道府県 %>
   <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください' } %>
   <br>
-  <%= f.label :address %>
+  <%= f.label :住所 %>
   <%= f.text_field :address, placeholder: "住所を入力してください" %>
   <br>
   <%= f.label :カテゴリー %>
   <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' } %>
   <br>
   <%= f.submit "登録" %>
-  <% end %>
-</div>
+<% end %>
 
-<%= link_to '戻る', shops_path %>
+<br>

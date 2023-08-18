@@ -1,10 +1,8 @@
 <p id="notice"><%= notice %></p>
+<br>
+<h2 class="shop-show-title"><%= @shop.name %></h2>
+<br>
 <div class="show-shop-list">
-  <p>
-  <strong>店名:</strong>
-  <%= @shop.name %>
-  </p>
-
   <p>
   <strong>カテゴリー:</strong>
   <%= @shop.category.name %>
@@ -52,53 +50,66 @@
     
   }
 </script>
-    <script async defer
-                  src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
-    </script>
-    <style type="text/css">
-      #map { height: 400px;
-            width: 90%;}
-    </style>
+<script async defer
+              src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+<style type="text/css">
+  #map { height: 400px;
+        width: 98%;}
+</style>
+<br>
+<div style="display: flex; justify-content: center;">
+  <%= image_tag "jimomin.png", class: "ranking_logo" %>
+</div>
+<br>
 
-    <div style="display: flex; justify-content: center;">
-      <%= image_tag "jimomin.png", class: "ranking_logo" %>
+<div id="show-container"></div>
+<script>
+  var dataFromDatabase = gon.votes;
+  // しきい値
+  var threshold = 100;
+
+  dataFromDatabase.sort((a, b) => b.count - a.count);
+  // データベースから取得したデータをループ処理
+  dataFromDatabase.forEach((variable, index) => {
+    
+    // しきい値からパーセンテージを計算
+    variable.percentage = Math.round(variable.count / threshold * 100);
+
+    // ランクに応じた画像を選択
+    var rankImage = '';
+    if (index === 0) {
+      rankImage = '<img src="<%= asset_path('no1.png') %>" class="rank-image" alt="1st">';
+    } else if (index === 1) {
+      rankImage = '<img src="<%= asset_path('no2.png') %>" class="rank-image" alt="2nd">';
+    } else if (index === 2) {
+      rankImage = '<img src="<%= asset_path('no3.png') %>" class="rank-image" alt="3rd">';
+    }
+
+    // containerに追加
+    document.querySelector('#show-container').insertAdjacentHTML('beforeend', `
+  <div class="graf">
+    <a href="/menus/${variable.id}" class="menu-link" style="text-decoration: none;">
+      ${rankImage}
+      <span class="data-name">${variable.name}</span>
+    </a>
+  
+    <div class="graf-bar-bg">
+      <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
     </div>
+  </div>`);
     
+    // widthを指定
+    document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
+  });
 
-    <div id="show-container"></div>
-    <script>
-    var dataFromDatabase = gon.votes;
-    // しきい値
-    var threshold = 100;
 
-    dataFromDatabase.sort((a, b) => b.count - a.count);
-    // データベースから取得したデータをループ処理
-    dataFromDatabase.forEach(variable => {
-      
-      // しきい値からパーセンテージを計算
-      variable.percentage = Math.round(variable.count / threshold * 100);
-      
-      // containerに追加
-      document.querySelector('#show-container').insertAdjacentHTML('beforeend', `
-    <div class="graf">
-      <a href="/menus/${variable.id}" class="menu-link">
-        <span class="data-name">${variable.name}</span>
-      </a>
-    
-      <div class="graf-bar-bg">
-        <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
-      </div>
-    </div>`);
-      
-      // widthを指定
-      document.querySelector('#' + variable.name).style.width = variable.percentage + '%';
-    });
-    </script>
-
+</script>
+<br>
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
   <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn-vote" %>
 <% end %>
 <% if  current_user&.admin? %>
-  <%= link_to 'ショップ情報編集', edit_shop_path(@shop), data: {"turbolinks" => false} %> 
+  <%= link_to 'ショップ情報編集', edit_shop_path(@shop), class: 'edit-link', data: {"turbolinks" => false} %> 
 <% end %>
-<%= link_to '戻る', shops_path, data: {"turbolinks" => false} %>
+<%= link_to '戻る', shops_path, class: 'back-link' ,data: {"turbolinks" => false} %>

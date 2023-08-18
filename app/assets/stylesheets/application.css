@@ -20,16 +20,12 @@ body {
   flex-direction: column;
   height: 100%;
   padding: 0px 20px;
+  width: 100%;
 }
 
 
 .page-content {
   margin-bottom: 100px;
-}
-
-.ranking_logo {
-  width: 400px; /* 幅を調整する値に変更 */
-  height: auto; /* 高さはアスペクト比を保持して自動調整 */
 }
 
 .centered-container {
@@ -52,6 +48,7 @@ body {
 
 .logo {
   margin-right: auto;
+  margin-left: 5px;
 }
 
 .logo img {
@@ -72,12 +69,13 @@ body {
 
 .header_button {
   text-decoration: none;
-  color: white;
+  color: #6e6c6c;
   background-color: rgb(251, 159, 22);
   font-weight: bold;
   transition: background-color 0.3s;
   margin-top: auto;
   margin-bottom: auto;
+  margin-right: 18px;
   padding: 7px 10px;
   border-radius: 3px;
   display: flex; /* ボタンを横並びにする */
@@ -116,29 +114,31 @@ footer {
   justify-content: center;
   margin-top: 10px;
   padding: auto;
+  text-align: center;
 }
 
 .footer-text {
   line-height: 50px;
 }
-
-/*ページネーション自体のデザイン*/
-ul.pagination {
-  
-}
-
-.pagination>li>a {          
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
-}
-
-/* 表示しているページ番号のデザイン */
 .pagination>.active>a {     
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+  background: #f5eacbf7;   
 }
 
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {        
-  border-radius: 15px;    /*角を丸くする*/
+
+.back-link  {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 5px; /* パディングの調整（上下 10px、左右 20px） */
+}
+.back-link:hover {
+  color: #666; /* ホバー時の色 */
+}
+.edit-link  {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 5px; /* パディングの調整（上下 10px、左右 20px） */
+  /* その他のスタイルも追加できます */
+}
+
+.user-edit-bottom {
+  margin-left: 20px;
+  padding-top: 10px;
 }

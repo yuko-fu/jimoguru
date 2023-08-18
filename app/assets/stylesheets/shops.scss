@@ -28,12 +28,16 @@ select {
 
 .menu-link {
   padding: 0 6px;
+  margin-right: 5px;
   color: #404040;
   text-align: right;
   width: 15%;
 }
 
 .graf-bar-bg {
+  flex: 1;
+  display: flex;
+  align-items: center;
   width: 70%;
   height: 30px;
   background: #ffffff00;
@@ -41,7 +45,7 @@ select {
 
 .graf-bar {
   display: flex;
-    justify-content: center;
+  justify-content: center;
   background: #f97d0194;
 }
 
@@ -89,6 +93,12 @@ select {
 #list {
   flex: 5; /* 残りのスペースを占める */
   padding: 20px; /* 余白 */
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 中央寄せ */
+}
+#list td {
   font-size: 15px;
 }
 
@@ -97,6 +107,7 @@ select {
   height: 600px;
   width: 100%; /* 地図の横幅を100%に */
   margin-left: 20px;
+  margin-top: 50px;
 }
 
 #form-container {
@@ -115,7 +126,14 @@ select {
 }
 
 .show-shop-list {
-  padding-left: 50px;
+  padding-left: 20px;
+}
+.show-shop-list p {
+  font-size: 16px;
+}
+.shop-show-title {
+  padding-left: 20px;
+  
 }
 
 .custom-header {
@@ -124,6 +142,87 @@ select {
   height: 40px; /* 適宜高さを調整 */
 }
 
-.index-button {
-  margin-left: auto;
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #d9e4f0;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+.page-item li {
+  background: #696969;
+  background: #696969;
+  border: 1px solid #000; 
+}
+
+.centered-pagination-and-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#pagination a {
+  color: rgb(240, 144, 19);
+}
+
+#index-button {
+
+  margin-top: 20px; /* 適切なマージンを調整 */
+  text-decoration: none;
+  color: white;
+  background-color: rgb(240, 144, 19);
+  // font-weight: bold;
+  transition: background-color 0.5s;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 5px 2px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
+}
+
+#index-button a {
+  font-size: large;
+  background-color: rgb(255, 255, 255);
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: rgb(240, 144, 19);
+}
+#pagination .generic  {
+  background-color: rgb(240, 144, 19);
+}
+
+.rank-image {
+  width: 30px; /* 画像の幅 */
+  height: 30px; /* 画像の高さ */
+  margin-right: 5px; /* 画像とテキストの間隔 */
+  vertical-align: middle; /* 画像をテキストの中央に配置 */
+}
+
+.ranking_logo {
+  width: 500px; /* 幅を調整する値に変更 */
+  height: auto; /* 高さはアスペクト比を保持して自動調整 */
+}
+
+.data-name {
+  font-size: large;
+  vertical-align: middle;
+}
+
+.back-link-text {
+  font-size: 16px;
+  padding: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s;
 }

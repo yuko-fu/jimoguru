@@ -8,8 +8,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :votes, dependent: :destroy
   has_many :shops, through: :votes
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
   enum prefecture:[
   :北海道,:青森県,:岩手県,:宮城県,:秋田県,:山形県,:福島県,
   :茨城県,:栃木県,:群馬県,:埼玉県,:千葉県,:東京都,:神奈川県,
@@ -37,5 +35,8 @@ class User < ApplicationRecord
   def guest?
        role == "ゲストユーザー"
      end
- 
+  
+  def valid_for_authentication?
+    super && !is_valid
+  end
 end

@@ -9,7 +9,7 @@
 }
 
 .slide {
-  width: 70%;
+  width: 100%;
   height: 700px;
   padding-top: 20px;
   object-fit: contain;
@@ -29,6 +29,7 @@
 	transition:all 1s ease-in-out;
 	object-fit:contain;
   margin-right: 0 auto; /* 画像とボタンの間隔を設定 */
+  margin-left: 50px;
   object-fit: contain; /* オリジナルサイズを保ちつつ縦横比を保つ */
     display: block; 
 }
@@ -48,6 +49,7 @@
   position: absolute; /* 画面の右側に配置 */
   top: 50%; /* 縦方向の中央揃え */
   transform: translateY(-50%); /* 中央揃えを調整 */
+  margin-right: 100px;
 }
 .top-button {
   font-size: 20px;

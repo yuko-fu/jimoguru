@@ -7,11 +7,11 @@
     <%= csp_meta_tag %>
     <%= include_gon %>
     
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -23,20 +23,22 @@
         </a>
       </div>
       <div class="right-aligned-buttons">
-        <% if  current_user&.admin? %>
-          <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}, class:"header_button"  %>
-          <%= link_to '投票履歴', user_path(current_user), class:"header_button" %>
+        <% if current_user %>
+          <%= link_to '管理者画面', '/admin', data: {"turbolinks" => false}, class:"header_button" if current_user.admin %>
+          <%= link_to '投票履歴', user_path(current_user), class:"header_button" unless current_user.email == "guest@example.com" %>
         <% end %>
         <%= link_to 'TOP',root_path, data: {"turbolinks" => false}, class:"header_button" %>
         <%= link_to "お問い合わせ", new_contact_path, class:"header_button" %>
-        <%= link_to " ログアウト ", destroy_user_session_path, method: :delete, class:"header_button"  %>
+        <% if user_signed_in? %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"header_button" %>
+        <% else %>
+          <%= link_to 'ログイン', new_user_session_path, class:"header_button" %>
+        <% end %>
+
       </div>
     
     </div>
     
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
       <% if alert %>
         <p class="alert alert-error"><%= alert %></p>
       <% end %>
@@ -45,7 +47,7 @@
     </div>
     <footer>
       <div class="footer-text">
-      © WEF2023
+      © WEF2305
       </div>
     </footer>
     

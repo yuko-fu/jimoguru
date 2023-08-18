@@ -4,17 +4,21 @@ class ShopsController < ApplicationController
 
   # GET /shops or /shops.json
   def index
-    @shops = Shop.order(latitude: :desc).page(params[:page]).per(10)
+    @shops = Shop.all
     @categories = Category.all
     @user = current_user
-    if params[:prefecture].present?
-      @shops = @shops.where(prefecture: params[:prefecture])
+    if params[:prefecture].present? && params[:category_id].present?
+      category = Category.find(params[:category_id])
+      @shops = category.shops.where(prefecture: params[:prefecture])
+      
+    elsif params[:prefecture].present?
+      @shops = Shop.where(prefecture: params[:prefecture])
     elsif params[:category_id].present?
       category = Category.find(params[:category_id])
-      @shops = category.shops.page(params[:page]).per(10)
+      @shops = category.shops
     end
     @category_names = Category.pluck(:name)
-
+    @shops = @shops.order(latitude: :desc).page(params[:page]).per(10)
     
   end
   # GET /shops/1 or /shops/1.json

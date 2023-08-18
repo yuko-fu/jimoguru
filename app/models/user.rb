@@ -35,5 +35,8 @@ class User < ApplicationRecord
   def guest?
        role == "ゲストユーザー"
      end
- 
+  
+  def valid_for_authentication?
+    super && !is_valid
+  end
 end

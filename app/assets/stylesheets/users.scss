@@ -1,3 +1,34 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+h1 {
+  margin-left: 30px;
+  
+}
+.user-show-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 水平方向に中央配置 */
+  text-align: center; /* テキストを中央揃え */
+  height: auto;
+  font-size: large;
+  width: 100%;
+}
+.user-show-container td {
+  font-size: large;
+  padding: 0 30px 20px;
+}
+.user-show-container th {
+  font-size: large;
+  text-align: center;
+}
+.custom-header {
+  background-color: #805d13; /* ヘッダーの背景色 */
+  color: #ffffff; /* ヘッダーの文字色 */
+  height: 40px; /* 適宜高さを調整 */
+  width: 100%;
+}
+.link-button {
+  margin-left: 30px;
+  
+}

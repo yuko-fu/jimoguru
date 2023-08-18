@@ -28,11 +28,6 @@ body {
   margin-bottom: 100px;
 }
 
-.ranking_logo {
-  width: 400px; /* 幅を調整する値に変更 */
-  height: auto; /* 高さはアスペクト比を保持して自動調整 */
-}
-
 .centered-container {
   display: flex;
   justify-content: space-between; /* 要素間のスペースを最大化 */
@@ -74,7 +69,7 @@ body {
 
 .header_button {
   text-decoration: none;
-  color: white;
+  color: #6e6c6c;
   background-color: rgb(251, 159, 22);
   font-weight: bold;
   transition: background-color 0.3s;
@@ -129,3 +124,21 @@ footer {
   background: #f5eacbf7;   
 }
 
+
+.back-link  {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 5px; /* パディングの調整（上下 10px、左右 20px） */
+}
+.back-link:hover {
+  color: #666; /* ホバー時の色 */
+}
+.edit-link  {
+  font-size: 16px; /* フォントサイズの調整 */
+  padding: 5px; /* パディングの調整（上下 10px、左右 20px） */
+  /* その他のスタイルも追加できます */
+}
+
+.user-edit-bottom {
+  margin-left: 20px;
+  padding-top: 10px;
+}

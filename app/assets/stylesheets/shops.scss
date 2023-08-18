@@ -28,6 +28,7 @@ select {
 
 .menu-link {
   padding: 0 6px;
+  margin-right: 5px;
   color: #404040;
   text-align: right;
   width: 15%;
@@ -92,26 +93,21 @@ select {
 #list {
   flex: 5; /* 残りのスペースを占める */
   padding: 20px; /* 余白 */
-  font-size: 15px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   align-items: center; /* 中央寄せ */
 }
-
-
-.edit-link,
-.back-link {
-  font-size: 16px; /* フォントサイズの調整 */
-  padding: 10px; /* パディングの調整（上下 10px、左右 20px） */
-  /* その他のスタイルも追加できます */
+#list td {
+  font-size: 15px;
 }
-
 
 #map {
   flex: 3; /* 横幅の2倍のスペースを占める */
   height: 600px;
   width: 100%; /* 地図の横幅を100%に */
   margin-left: 20px;
+  margin-top: 50px;
 }
 
 #form-container {
@@ -130,7 +126,14 @@ select {
 }
 
 .show-shop-list {
-  padding-left: 50px;
+  padding-left: 20px;
+}
+.show-shop-list p {
+  font-size: 16px;
+}
+.shop-show-title {
+  padding-left: 20px;
+  
 }
 
 .custom-header {
@@ -147,7 +150,7 @@ select {
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {     
-  background: #93c9ff;     /*背景の色を変える*/
+  background: #d9e4f0;     /*背景の色を変える*/
   border-radius: 15px;     /*角を丸くする*/
 }
 
@@ -158,6 +161,8 @@ select {
 
 .page-item li {
   background: #696969;
+  background: #696969;
+  border: 1px solid #000; 
 }
 
 .centered-pagination-and-button {
@@ -203,4 +208,21 @@ select {
   height: 30px; /* 画像の高さ */
   margin-right: 5px; /* 画像とテキストの間隔 */
   vertical-align: middle; /* 画像をテキストの中央に配置 */
+}
+
+.ranking_logo {
+  width: 500px; /* 幅を調整する値に変更 */
+  height: auto; /* 高さはアスペクト比を保持して自動調整 */
+}
+
+.data-name {
+  font-size: large;
+  vertical-align: middle;
+}
+
+.back-link-text {
+  font-size: 16px;
+  padding: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s;
 }

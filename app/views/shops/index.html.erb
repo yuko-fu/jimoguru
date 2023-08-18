@@ -1,5 +1,5 @@
-
-<h3 class="index-title">お店を探す</h3>
+<b>
+<h2 class="index-title">お店を探す</h2>
 
 <div id="container">
   <div id="map" ></div>
@@ -7,7 +7,7 @@
     <table class="table">
       <thead class="custom-header">
         <tr>
-          <th scope="col">店名</th>
+          <th scope="col" >店名</th>
           <th scope="col" class="index_category" >カテゴリー</th>
           <th scope="col"  class="index_prefecture">都道府県</th>
           <th scope="col">住所</th>
@@ -120,7 +120,7 @@ document.addEventListener("turbolinks:load", setupRowClickHandlers);
               closeInfoWindows();
               infoWindow.setContent(
                 `<div class='info-window-content'>
-                  <a href='/shops/${shop.id}' class='custom-link'>${shop.name}</a>
+                  <a href='/shops/${shop.id}' class='custom-link' style="outline: none;">${shop.name}</a>
                   <p>カテゴリー: ${categoryName[shop.category_id-1]}</p>
                   <p>住所: ${shop.address}</p>
                 </div>`

@@ -31,7 +31,6 @@ class MenusController < ApplicationController
     @menu = Menu.new(menu_params)
     @vote = Vote.new(vote_params)
     @shop = Shop.find(params[:shop_id])
-    # binding.pry
     if @menu.save
       redirect_to new_vote_path(shop_id: @shop.id)
     else

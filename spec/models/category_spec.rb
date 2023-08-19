@@ -10,4 +10,5 @@ RSpec.describe Category, type: :model do
     category = FactoryBot.build(:category, name: nil)
     expect(category).to_not be_valid
   end
+
 end

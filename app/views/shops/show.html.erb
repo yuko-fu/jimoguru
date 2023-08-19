@@ -79,12 +79,13 @@
     // ランクに応じた画像を選択
     var rankImage = '';
     if (index === 0) {
-      rankImage = '<img src="/asset_path/no1.png" class="rank-image" alt="1st">';
+      rankImage = '<img src="<%= asset_path('no1.png') %>" class="rank-image" alt="1st">';
     } else if (index === 1) {
-      rankImage = '<img src="/asset_path/no2.png" class="rank-image" alt="2nd">';
+      rankImage = '<img src="<%= asset_path('no2.png') %>" class="rank-image" alt="2nd">';
     } else if (index === 2) {
-      rankImage = '<img src="/asset_path/no_3.png" class="rank-image" alt="3rd">';
+      rankImage = '<img src="<%= asset_path('no_3.png') %>" class="rank-image" alt="3rd">';
     }
+
 
     // containerに追加
     document.querySelector('#show-container').insertAdjacentHTML('beforeend', `

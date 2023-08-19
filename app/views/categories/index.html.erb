@@ -1,0 +1,22 @@
+<h1>カテゴリー一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th>カテゴリー名</th>
+      <th>アクション</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to '編集', edit_category_path(category) %>
+          <%= link_to '削除', category, method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新規カテゴリー作成', new_category_path %>

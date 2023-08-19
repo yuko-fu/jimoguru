@@ -36,6 +36,7 @@
     </div>
     <div class="index-button">
       <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>  
+      <%= link_to 'カテゴリー一覧', categories_path, data: {"turbolinks" => false} if current_user.admin %>
     </div>
   </div>
 </div>

@@ -1,5 +1,9 @@
 <h1>新規カテゴリー作成</h1>
-
+<% if flash[:error].present? %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
 <%= render 'form' %>
 
 <%= link_to '一覧に戻る', categories_path %>

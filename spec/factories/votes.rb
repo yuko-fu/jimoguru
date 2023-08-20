@@ -3,6 +3,6 @@ FactoryBot.define do
     association :shop
     association :user
     association :menu
-    content { "Great menu!" }
+    content { "Great!" }
   end
 end

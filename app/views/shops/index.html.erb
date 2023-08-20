@@ -15,6 +15,7 @@
         </tr>
       </thead>
       <tbody>
+      
       <div class="index-bar">
         <%= form_tag shops_path, method: :get do %>
           <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
@@ -22,6 +23,7 @@
           <%= submit_tag '検索' %>
         <% end %>
       </div>
+    </div>
       <% @shops.each do |shop| %>
         <tr data-href="<%= shop_path(shop) %>">
           <td scope="col" class="shop_name"><%= shop.name %></td>
@@ -34,9 +36,13 @@
     <div id="pagination">
       <%= paginate @shops %>
     </div>
-    <div class="index-button">
-      <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>  
-      <%= link_to 'カテゴリー一覧', categories_path, data: {"turbolinks" => false} if current_user.admin %>
+    <div>
+      <div class="index-new-shop-button">
+        <%= link_to 'お店新規登録', new_shop_path, data: {"turbolinks" => false} %>  
+      </div>
+      <div class="index-category-button">
+        <%= link_to 'カテゴリー一覧', categories_path, data: {"turbolinks" => false} if current_user.admin %>
+      </div>
     </div>
   </div>
 </div>

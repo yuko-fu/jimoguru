@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
   end
 
   it "無効な認証を許可しないこと" do
-    valid_user = FactoryBot.create(:user, is_valid: false)
+    valid_user = FactoryBot.create(:admin_user, is_valid: false)
     invalid_user = FactoryBot.create(:user, is_valid: true)
     
     expect(valid_user.valid_for_authentication?).to be_truthy

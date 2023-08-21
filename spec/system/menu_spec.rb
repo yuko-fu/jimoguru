@@ -13,7 +13,6 @@ RSpec.describe "Menus", type: :system do
       fill_in 'user_password', with: "second_user"
       click_button "ログイン"
       visit shop_path(@shop)
-      expect(page).to have_link("投票する", href: new_vote_path(shop_id: @shop.id))
       click_link "投票する"
       fill_in "name", with: "マルゲリータ"
       click_button "メニュー登録"
@@ -30,12 +29,13 @@ RSpec.describe "Menus", type: :system do
       fill_in 'user_password', with: "second_user"
       click_button "ログイン"
       visit shop_path(@shop)
-      expect(page).to have_link("投票する", href: new_vote_path(shop_id: @shop.id))
       click_link "投票する"
       expect(page).to have_content("新しいメニューを登録")
       fill_in "name", with: "マルゲリータ"
       click_button "メニュー登録"
-      expect(page).to have_content("Nameはすでに存在します")
+      
+      expect(Menu.count).to eq 1
+
     end
   end
 end

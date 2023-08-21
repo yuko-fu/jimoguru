@@ -17,7 +17,7 @@ class VotesController < ApplicationController
     @vote = Vote.new
     @shop = Shop.find(params[:shop_id])
     @menus = @shop.menus
-    
+
   end
 
   # GET /votes/1/edit

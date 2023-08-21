@@ -10,6 +10,7 @@ RSpec.describe "投票機能", type: :system do
       it "正しいページタイトルが表示されていること" do
         @shop = FactoryBot.create(:shop, prefecture: second_user.prefecture)
         visit new_user_session_path
+        sleep(5)
         fill_in 'user_email', with: "second_user@example.com"
         fill_in 'user_password', with: "second_user"
         click_button "ログイン"

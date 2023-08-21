@@ -19,10 +19,14 @@
       <%= link_to "新規登録", new_user_registration_path %>
     </div>
     <div class="top-button">
-      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+      <% if show_guest_login_buttons? %>
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+      <% end %>
     </div>
     <div class="top-button">
-      <%= link_to 'ゲストログイン（管理者用）', users_guest_admin_sign_in_path, method: :post %>
+      <% if show_guest_login_buttons? %>
+        <%= link_to 'ゲストログイン（管理者用）', users_guest_admin_sign_in_path, method: :post %>
+      <% end %>
     </div>
   </div>
 </div>

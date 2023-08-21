@@ -176,28 +176,17 @@ select {
   color: rgb(240, 144, 19);
 }
 
-.index-button {
-
-  margin-top: 20px; /* 適切なマージンを調整 */
-  text-decoration: none;
-  color: white;
-  background-color: rgb(240, 144, 19);
-  // font-weight: bold;
-  transition: background-color 0.5s;
-  margin-top: auto;
-  margin-bottom: auto;
+.index-new-shop-button, .index-category-button {
+  
   padding: 5px 2px;
-  border-radius: 5px;
   display: inline-block;
-  transition: background-color 0.3s, opacity 0.3s, color 0.3s;
 }
 
-.index-button a {
-  font-size: large;
-  background-color: rgb(255, 255, 255);
+.index-new-shop-button a, .index-category-button a {
   padding: 2px 5px;
   border-radius: 4px;
-  color: rgb(240, 144, 19);
+  color: #617b01;
+  border: 2px solid #617b01;
 }
 #pagination .generic  {
   background-color: rgb(240, 144, 19);

@@ -21,20 +21,21 @@ class User < ApplicationRecord
   ]
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
-       user.password = SecureRandom.urlsafe_base64
-       user.name = "ゲストユーザー"
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲストユーザー"
     end
   end
   def self.guest_admin
     find_or_create_by!(email: 'guest_admin@example.com') do |user|
-       user.password = SecureRandom.urlsafe_base64
-       user.name = "ゲスト管理者ユーザー"
-       user.admin = true
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト管理者ユーザー"
+      user.admin = true
     end
   end
   def guest?
-       role == "ゲストユーザー"
-     end
+    !is_valid
+    # role == "ゲストユーザー"
+  end
   
   def valid_for_authentication?
     super && !is_valid

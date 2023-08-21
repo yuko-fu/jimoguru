@@ -8,10 +8,11 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path
+      redirect_to categories_path, notice: 'カテゴリが保存されました。'
     else
       @categories = Category.all
-      render 'index'
+      flash.now[:error] = 'カテゴリを保存できませんでした。'
+      render 'new'
     end
   end
 
@@ -42,6 +43,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.permit(:name)
+      params.require(:category).permit(:name)
     end
 end

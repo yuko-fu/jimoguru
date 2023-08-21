@@ -108,7 +108,7 @@
 </script>
 <br>
 <% if user_signed_in? && @user_prefecture == @shop.prefecture %>
-  <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn-vote" %>
+  <%= link_to "投票する", new_vote_path(shop_id: @shop.id), class: "btn-vote", class: 'edit-link' %>
 <% end %>
 <% if  current_user&.admin? %>
   <%= link_to 'ショップ情報編集', edit_shop_path(@shop), class: 'edit-link', data: {"turbolinks" => false} %> 

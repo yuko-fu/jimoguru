@@ -34,7 +34,7 @@ class MenusController < ApplicationController
     if @menu.save
       redirect_to new_vote_path(shop_id: @shop.id)
     else
-      render :new
+      redirect_back(fallback_location: new_vote_path(shop_id: @shop.id)) 
     end
   end
 

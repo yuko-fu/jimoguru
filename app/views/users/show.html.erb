@@ -24,7 +24,7 @@
             <td scope="col"><% if vote.image.attached? %>
               <%= image_tag vote.image.variant(resize: "200"), style: "width: 200px; height: 150px;" %>
             <% else %>
-              <%= image_tag 'no_image.png', style: "width: 200px; height: 150px;" %><br>
+              <%= image_tag "no_image.png", style: "width: 200px; height: 150px;" %><br>
             <% end %></td>
             <td><%= vote.content %></td>
             <td><%= link_to "削除", vote_path(vote.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"  %></td>

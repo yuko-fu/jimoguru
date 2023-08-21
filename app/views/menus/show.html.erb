@@ -15,7 +15,7 @@
       <% if vote.image.attached? %> 
         <%= image_tag vote.image, alt: 'Photo', style: "width: 200px; height: 150px;" %> 
       <% else %>
-        <%= image_tag 'no_image.png', style: "width: 200px; height: 150px;" %>
+        <%= image_tag "no_image.png", style: "width: 200px; height: 150px;" %>
       <% end %>
       <p class="vote-info">
         ユーザー名: <%= vote.user.name %><br>

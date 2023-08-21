@@ -11,6 +11,7 @@
           <th scope="col" class="index_category" >カテゴリー</th>
           <th scope="col"  class="index_prefecture">都道府県</th>
           <th scope="col">住所</th>
+          <th scope="col">投票総数</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -30,6 +31,7 @@
           <td scope="col" class="index_category"><%= shop.category.name %></td>
           <td scope="col" class="index_prefecture"><%= shop.prefecture %></td>
           <td scope="col"><%= shop.address %></td>
+          <td scope="col" class="index-vote-count"><%= @shop_vote_counts[shop.id] || 0 %>件</td> 
         </tr>
       <% end %>
     </table>

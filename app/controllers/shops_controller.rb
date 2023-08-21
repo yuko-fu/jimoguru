@@ -18,6 +18,7 @@ class ShopsController < ApplicationController
       @shops = category.shops
     end
     @category_names = Category.pluck(:name)
+    @shop_vote_counts = Shop.joins(:votes).group(:shop_id).count
     @shops = @shops.order(latitude: :desc).page(params[:page]).per(10)
     
   end

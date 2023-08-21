@@ -84,6 +84,12 @@ select {
   text-align: center;
 }
 
+.index-vote-count {
+  width: 100px;
+  text-align: center;
+}
+
+
 @media (max-width: 480px) {
   .menu-item {
     width: 40%; 
@@ -91,7 +97,7 @@ select {
 }
 
 #list {
-  flex: 5; /* 残りのスペースを占める */
+  flex: 2; /* 残りのスペースを占める */
   padding: 20px; /* 余白 */
   font-size: 16px;
   display: flex;
@@ -100,10 +106,13 @@ select {
 }
 #list td {
   font-size: 15px;
+  padding: 3px;
 }
-
+.index_prefecture td {
+  width: 80px;
+}
 #map {
-  flex: 3; /* 横幅の2倍のスペースを占める */
+  flex: 1; /* 横幅の2倍のスペースを占める */
   height: 600px;
   width: 100%; /* 地図の横幅を100%に */
   margin-left: 20px;

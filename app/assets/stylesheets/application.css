@@ -14,6 +14,7 @@
  *= require_self
  */
 body {
+  font-family: "Tsukushi B Round Gothic","筑紫B丸ゴシック"; font-weight: bold;
   background-color: rgba(245, 245, 220, 0.654);
   background-image: url('23950411.jpg'); 
   display: flex;

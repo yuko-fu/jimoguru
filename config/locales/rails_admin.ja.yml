@@ -1,4 +1,84 @@
 ja:
+  activerecord:
+    models:
+      active_storage_attachment: アクティブストレージ添付ファイル
+      active_storage_blob: アクティブストレージブロブ
+      active_storage_variant_record: アクティブストレージバリアントレコード
+      category: カテゴリー
+      contact: お問い合わせ
+      menu: メニュー
+      shop: ショップ
+      user: ユーザー
+      vote: 投票
+    attributes:
+      active_storage_attachment:
+        name: 名前
+        record_type: レコードタイプ
+        record_id: レコードID
+        blob_id: ブロブID
+        created_at: 作成日時
+      active_storage_blob:
+        key: キー
+        filename: ファイル名
+        content_type: コンテンツタイプ
+        metadata: メタデータ
+        service_name: サービス名
+        byte_size: バイトサイズ
+        checksum: チェックサム
+        created_at: 作成日時
+      active_storage_variant_record:
+        blob_id: ブロブID
+        variation_digest: バリエーションダイジェスト
+      category:
+        name: カテゴリー名
+        created_at: 作成日時
+        updated_at: 更新日時
+      contact:
+        name: お名前
+        email: メールアドレス
+        content: お問い合わせ内容
+        created_at: 送信日時
+        updated_at: 更新日時
+      menu:
+        name: メニュー名
+        shop_id: ショップID
+        created_at: 作成日時
+        updated_at: 更新日時
+      shop:
+        name: ショップ名
+        prefecture: 都道府県
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+        category_id: カテゴリーID
+        created_at: 作成日時
+        updated_at: 更新日時
+      user:
+        email: メールアドレス
+        encrypted_password: パスワード（暗号化済み）
+        reset_password_token: パスワードリセットトークン
+        reset_password_sent_at: パスワードリセット送信日時
+        remember_created_at: ログイン情報保存日時
+        sign_in_count: ログイン回数
+        current_sign_in_at: 最終ログイン日時
+        last_sign_in_at: 前回ログイン日時
+        current_sign_in_ip: 最終ログインIP
+        last_sign_in_ip: 前回ログインIP
+        created_at: 作成日時
+        updated_at: 更新日時
+        admin: 管理者
+        prefecture: 都道府県
+        name: 名前
+        is_valid: 有効
+      vote:
+        shop_id: ショップID
+        user_id: ユーザーID
+        menu_id: メニューID
+        created_at: 作成日時
+        updated_at: 更新日時
+        image: 画像
+        content: コメント
+
   admin:
     js:
       true: True

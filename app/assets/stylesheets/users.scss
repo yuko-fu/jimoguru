@@ -30,5 +30,10 @@ h1 {
 }
 .link-button {
   margin-left: 30px;
-  
+}
+.custom-header th {
+  width: 100px; /* 例: 幅を150pxに設定 */
+}
+tbody td {
+  width: 150px; /* 例: 幅を150pxに設定 */
 }

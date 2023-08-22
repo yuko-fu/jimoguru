@@ -23,7 +23,25 @@ body {
   padding: 0px 20px;
   width: 100%;
 }
+@media screen and (max-width: 767px) {
+  body {
+    padding: 0;
+  }
+}
 
+/* タブレット向けスタイル */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+    padding: 0 10px;
+  }
+}
+
+/* デスクトップ向けスタイル */
+@media screen and (min-width: 1024px) {
+  body {
+    padding: 0 20px;
+  }
+}
 
 .page-content {
   margin-bottom: 100px;

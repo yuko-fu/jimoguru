@@ -55,7 +55,7 @@ class ShopsController < ApplicationController
         format.html { redirect_to shop_url(@shop), notice: "Shop was successfully created." }
         format.json { render :show, category: :created, location: @shop }
       else
-        flash.now[:alert] = "同じ住所のお店は登録済みです"
+        flash.now[:alert] = "入力された住所は空欄または登録済みです"
         format.html { render :new, category: :unprocessable_entity }
         format.json { render json: @shop.errors, category: :unprocessable_entity }
       end

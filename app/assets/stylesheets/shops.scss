@@ -224,3 +224,17 @@ select {
   background-color: transparent;
   transition: background-color 0.3s;
 }
+
+.delete-button {
+  background-color: rgba(217, 0, 0, 0.756); /* 背景色を赤に設定 */
+  color: white; /* テキスト色を白に設定 */
+  border: none; /* ボーダーを削除 */
+  padding: 5px 10px; /* パディングを追加してボタンを見栄えよくする */
+  cursor: pointer; /* ホバー時にカーソルをポインターに変更 */
+  border-radius: 4px; /* ボタンの角を丸くする */
+}
+
+/* オプション: ボタンにホバー時のスタイルを追加 */
+.delete-button:hover {
+  background-color: darkred; /* ホバー時の背景色を変更 */
+}

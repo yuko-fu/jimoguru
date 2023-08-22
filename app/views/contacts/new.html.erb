@@ -5,13 +5,13 @@
 
 <%= form_for @contact do |f| %>
   <%= f.label :name, 'お名前' %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, placeholder: "お名前" %>
   
   <%= f.label :email, 'メールアドレス' %>
-  <%= f.email_field :email %>
+  <%= f.email_field :email, placeholder: "ご返信先のメールアドレス" %>
   
   <%= f.label :message, 'お問い合わせ内容' %>
-  <%= f.text_area :content %>
-  
+  <%= f.text_area :content, placeholder: "例: 管理者に問い合わせたい内容" %>
+  <br>
   <%= f.submit '送信する' %>
 <% end %>

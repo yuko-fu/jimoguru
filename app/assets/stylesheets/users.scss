@@ -15,8 +15,8 @@ h1 {
   width: 100%;
 }
 .user-show-container td {
-  font-size: large;
-  padding: 0 30px 20px;
+  // font-size: large;
+  padding: 0 5px 20px;
 }
 .user-show-container th {
   font-size: large;
@@ -32,8 +32,5 @@ h1 {
   margin-left: 30px;
 }
 .custom-header th {
-  width: 100px; /* 例: 幅を150pxに設定 */
-}
-tbody td {
-  width: 150px; /* 例: 幅を150pxに設定 */
+  padding: 10px; /* 例: 幅を150pxに設定 */
 }

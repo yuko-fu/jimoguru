@@ -1,5 +1,5 @@
 
-<h1>投票履歴</h1>
+<h1><%= @user.name %>さんの投票履歴</h1>
 <div class="user-show-container">
   <table>
     <thead class="custom-header">
@@ -18,16 +18,16 @@
       <% @votes.each do |vote| %>
         <tr>
         <div>
-            <td><%= vote.created_at.to_s(:datetime_jp) %></td>
+            <td><%= vote.created_at.strftime('%Y-%m-%d') %></td>
             <td scope="col"><%= link_to vote.shop.name, shop_path(vote.shop)%></td>
             <td scope="col"><%= vote.menu.name %></td>
             <td scope="col"><% if vote.image.attached? %>
-              <%= image_tag vote.image.variant(resize: "200"), style: "width: 200px; height: 150px;" %>
+              <%= image_tag vote.image.variant(resize: "200"), style: "width: 120px; height: 80px;" %>
             <% else %>
-              <%= image_tag "no_image.png", style: "width: 200px; height: 150px;" %><br>
+              <%= image_tag "no_image.png", style: "width: 120px; height: 80px;" %><br>
             <% end %></td>
             <td><%= vote.content %></td>
-            <td><%= link_to "削除", vote_path(vote.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"  %></td>
+            <td><%= link_to "削除", vote_path(vote.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "delete-button" %></td>
           </tr>
       <% end %>
     </tbody>

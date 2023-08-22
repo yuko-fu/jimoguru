@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def show
+    @user = User.find(current_user[:id])
     @votes = Vote.where(user_id:current_user.id)
   end
 
@@ -16,5 +17,6 @@ class UsersController < ApplicationController
       redirect_to root_path, alert: "退会処理に失敗しました。"
     end
   end
+
 
 end

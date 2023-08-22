@@ -4,17 +4,17 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :ユーザー名 %><br />
+    <%= f.label :name, "ユーザー名" %><br />
     <%= f.text_field :name, autofocus: true, placeholder: "例: トマトマト" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :都道府県 %><br />
+    <%= f.label :prefecture, "都道府県" %><br />
     <%= f.select :prefecture,User.prefectures.keys, { prompt: '選択してください' } %>
   </div>
 
@@ -23,7 +23,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+    <%= f.label :password, "パスワード" %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
     <%= f.password_field :password, autocomplete: "new-password", placeholder: "new_password" %>
     <% if @minimum_password_length %>
       <br />
@@ -32,7 +32,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "確認用パスワード" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "new_password" %>
   </div>
 

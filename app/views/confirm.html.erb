@@ -14,7 +14,7 @@
       <%= form_with model: @contact, local: true, url: contact_done_path do |form| %>
 
         <div class="form-group">
-          <%= form.label :name, '名前' %>
+          <%= form. :name, '名前' %>
           <%= form.text_field :name, value: @contact.name, id: 'name', class: 'form-control-plaintext', :placeholder => '名前' %>
         </div>
 

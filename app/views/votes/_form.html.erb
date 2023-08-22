@@ -1,7 +1,7 @@
 <%= form_with(model: vote) do |form| %>
   <% if vote.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(vote.errors.count, "error") %> prohibited this vote from being saved:</h2>
+      <h2>この投票の保存をキャンセルしました</h2>
 
       <ul>
         <% vote.errors.each do |error| %>

@@ -34,7 +34,8 @@ class VotesController < ApplicationController
       redirect_to @vote.shop, notice: '投票が成功しました。'
     else
       Rails.logger.error @vote.errors.full_messages.inspect
-      render :new
+      # redirect_back(fallback_location: new_vote_path(shop_id: @shop.id), notice:"投票ができませんでした")
+      redirect_to new_vote_path(shop_id: @shop.id), alert: 'エラーが発生しました'
       
     end
   end

@@ -4,22 +4,22 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :ユーザー名 %><br />
+    <%= f.label :name, "ユーザー名" %><br />
     <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "xxx@mail.com" %>
   </div>
 
   <div class="field">
-    <%= f.label :都道府県 %><br />
+    <%= f.label :prefecture, "都道府県" %><br />
     <%= f.select :prefecture,User.prefectures.keys, { prompt: '選択してください' } %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, "パスワード" %>
     <% if @minimum_password_length %>
     <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
@@ -27,7 +27,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "確認用パスワード" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "your_password" %>
   </div>
 

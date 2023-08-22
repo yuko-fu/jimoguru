@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      vote: 投票
+    attributes:
+      vote:
+        menu: メニュー
+        

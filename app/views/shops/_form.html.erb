@@ -12,16 +12,16 @@
   <% end %>
   <div>
   <%= form_for @shop, url: { action: :create }, method: :post do |f| %>
-    <%= f.label :name %>
+    <%= f.label :name, "店名" %>
     <%= f.text_field :name, placeholder: "店名を入力してください" %>
     <br>
-    <%= f.label :都道府県 %>
+    <%= f.label :prefecture, "都道府県" %>
     <%= f.select :prefecture, Shop.prefectures.keys, { prompt: '選択してください' } %>
     <br>
-    <%= f.label :address %>
+    <%= f.label :address, "住所" %>
     <%= f.text_field :address, placeholder: "住所を入力してください" %>
     <br>
-    <%= f.label :カテゴリー %>
+    <%= f.label :category_id, "カテゴリー" %>
     <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' } %>
     <br>
     <%= f.submit "登録" %>

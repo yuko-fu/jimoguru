@@ -53,9 +53,9 @@ var marker = gon.shop
         <% end %>
         </div>
       </div>
-      <%= form.label :メニューの価格など一言投稿 %>
+      <%= form.label :content, "メニューの価格など一言投稿" %>
       <%= form.text_field :content, placeholder: "10文字以内(例:税込500円など)", size: 26 %><br>
-      <%= form.label :写真投稿 %>
+      <%= form.label :image, "写真投稿" %>
       <div class="image-upload">
         <%= form.file_field :image, id: "image-input", onchange: "previewImage(this)" %><br>
         <div id="image-preview"></div>
@@ -107,7 +107,7 @@ function previewImage(input) {
   <div id="new-menu">
     <h3>【新しいメニューを登録】</h3><br>
     <%= form_with model: @menu, url: menus_path, local: true  do |form| %>
-      <%= form.label :新規メニュー投稿 %>
+      <%= form.label :name, "新規メニュー投稿" %>
       <%= form.text_field :name, placeholder: "例:マルゲリータ" %><br>
       <%= form.hidden_field :shop_id, :value => @shop.id %><br>
       <%= form.submit 'メニュー登録' %>

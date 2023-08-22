@@ -22,7 +22,7 @@ class ShopsTest < ApplicationSystemTestCase
     fill_in "Prefecture", with: @shop.prefecture
     click_on "Create Shop"
 
-    assert_text "Shop was successfully created"
+    assert_text "お店の新規登録できました"
     click_on "Back"
   end
 

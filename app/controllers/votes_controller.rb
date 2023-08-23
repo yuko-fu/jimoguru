@@ -1,18 +1,15 @@
 class VotesController < ApplicationController
   before_action :set_vote, only: %i[ show edit update destroy ]
-  
-  # GET /votes or /votes.json
+ 
   def index
     @votes = Vote.all
   end
 
-  # GET /votes/1 or /votes/1.json
   def show
     @vote = Vote.find(params[:id])
     
   end
 
-  # GET /votes/new
   def new
     @vote = Vote.new
     @shop = Shop.find(params[:shop_id])
@@ -20,12 +17,10 @@ class VotesController < ApplicationController
 
   end
 
-  # GET /votes/1/edit
   def edit
     @vote = Vote.find(params[:id])
   end
 
-  # POST /votes or /votes.json
   def create
     @vote = current_user.votes.new(vote_params)
     @shop = Shop.find(params[:vote][:shop_id])
@@ -40,7 +35,6 @@ class VotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /votes/1 or /votes/1.json
   def update
     @vote = Vote.find(params[:id])
     respond_to do |format|
@@ -54,7 +48,6 @@ class VotesController < ApplicationController
     end
   end
 
-  # DELETE /votes/1 or /votes/1.json
   def destroy
     @vote.destroy
     respond_to do |format|
@@ -64,7 +57,7 @@ class VotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_vote
       @vote = Vote.find(params[:id])
     end

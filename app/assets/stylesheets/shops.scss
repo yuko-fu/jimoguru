@@ -31,7 +31,7 @@ select {
   margin-right: 5px;
   color: #404040;
   text-align: right;
-  width: 15%;
+  width: 300px;
 }
 
 .graf-bar-bg {
@@ -39,7 +39,7 @@ select {
   display: flex;
   align-items: center;
   width: 70%;
-  height: 30px;
+  height: 50px;
   background: #ffffff00;
 }
 
@@ -47,11 +47,16 @@ select {
   display: flex;
   justify-content: center;
   background: #f97d0194;
+  justify-content: space-between;
 }
 
 .graf-bar span{
   color: #0c0b0b;
   padding: 0 1px;
+  display: flex;
+  justify-content: center; /* 水平方向中央寄せ */
+  align-items: center; /* 垂直方向中央寄せ */
+  height: 100%; 
 }
 
 .menu-items {
@@ -237,4 +242,28 @@ select {
 /* オプション: ボタンにホバー時のスタイルを追加 */
 .delete-button:hover {
   background-color: darkred; /* ホバー時の背景色を変更 */
+}
+
+/* 1位のグラフのスタイル */
+.graph-color-1st {
+  background-color: #e00404b8; /* 1位の色を設定 */
+  height: 40px; /* 1位の高さを設定 */
+}
+
+/* 2位のグラフのスタイル */
+.graph-color-2nd {
+  background-color: #ffc400b3; /* 2位の色を設定 */
+  height: 35px; /* 2位の高さを設定 */
+}
+
+/* 3位のグラフのスタイル */
+.graph-color-3rd {
+  background-color: #fff533b2; /* 3位の色を設定 */
+  height: 28px; /* 3位の高さを設定 */
+}
+
+/* それ以下のグラフのスタイル */
+.graph-color-other {
+  background-color: #CCCCCC; /* それ以下の色を設定 */
+  height: 20px; /* それ以下の高さを設定 */
 }

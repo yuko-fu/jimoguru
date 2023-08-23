@@ -19,7 +19,7 @@
       
       <div class="index-bar">
         <%= form_tag shops_path, method: :get do %>
-          <%= select_tag :prefecture, options_for_select(Shop.pluck(:prefecture).uniq), prompt: '都道府県で絞る' %>
+          <%= select_tag :prefecture, options_for_select(@shop_prefecture), prompt: '都道府県で絞る' %>
           <%= select_tag :category_id, options_for_select(@categories.pluck(:name, :id)), prompt: 'カテゴリーで絞る'  %>
           <%= submit_tag '検索' %>
         <% end %>

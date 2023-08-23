@@ -94,7 +94,7 @@ body {
   transition: background-color 0.3s;
   margin-top: auto;
   margin-bottom: auto;
-  margin-right: 18px;
+  margin-right: 5px;
   padding: 7px 10px;
   border-radius: 3px;
   display: flex; /* ボタンを横並びにする */
@@ -119,7 +119,7 @@ body {
 }
 
 .header_button + .header_button {
-  margin-left: 10px; /* 2つ目のボタンの左マージンを追加 */
+  margin-left: 5px; /* 2つ目のボタンの左マージンを追加 */
 }
 
 footer {
@@ -160,4 +160,8 @@ footer {
 .user-edit-bottom {
   margin-left: 20px;
   padding-top: 10px;
+}
+
+.alert alert-error p {
+  color: red; 
 }

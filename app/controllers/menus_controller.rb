@@ -1,12 +1,9 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
 
-  # GET /menus or /menus.json
   def index
     @menus = Menu.all
   end
-
-  # GET /menus/1 or /menus/1.json
 
   def show
     @menu = Menu.find(params[:id])
@@ -15,17 +12,14 @@ class MenusController < ApplicationController
     expires_now
   end
 
-  # GET /menus/new
   def new
     @menu = Menu.new
   end
 
-  # GET /menus/1/edit
   def edit
     @menu = Menu.new
   end
 
-  # POST /menus or /menus.json
   def create
     
     @menu = Menu.new(menu_params)
@@ -38,7 +32,6 @@ class MenusController < ApplicationController
     end
   end
 
-  # PATCH/PUT /menus/1 or /menus/1.json
   def update
     respond_to do |format|
       if @menu.update(menu_params)
@@ -51,7 +44,6 @@ class MenusController < ApplicationController
     end
   end
 
-  # DELETE /menus/1 or /menus/1.json
   def destroy
     @menu.destroy
 
@@ -62,17 +54,16 @@ class MenusController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
+    
+  def set_menu
+    @menu = Menu.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def menu_params
-      params.permit(:name, :shop_id)
-    end
+  def menu_params
+    params.permit(:name, :shop_id)
+  end
 
-    def vote_params
-      params.permit(:image, :content, :shop_id, :user_id, :menu_id)
-    end
+  def vote_params
+    params.permit(:image, :content, :shop_id, :user_id, :menu_id)
+  end
 end

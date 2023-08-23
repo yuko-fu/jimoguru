@@ -32,10 +32,16 @@
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    var contentString = `<div><p>店名：<%= @shop.name %></p><p>住所：<%= @shop.address %></p></div>`;
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+    var contentString = `
+    <div>
+      <p>店名：<%= @shop.name %></p>
+      <p>住所：<%= @shop.address %></p>
+      </div>`;
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
 
     var marker = new google.maps.Marker({
       position: shopLocation,
@@ -44,8 +50,13 @@
     });
 
     marker.addListener('click', function() {
+      var newZoomLevel = 20;
+      map.setZoom(newZoomLevel);
+      map.setCenter(marker.getPosition());
       infowindow.open(map, marker);
+      marker.setMap(null);
     });
+
 
     
   }
@@ -54,7 +65,7 @@
               src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>
 <style type="text/css">
-  #map { height: 400px;
+  #map { height: 500px;
         width: 98%;}
 </style>
 <br>
@@ -85,7 +96,16 @@
     } else if (index === 2) {
       rankImage = '<img src="<%= asset_path('no_3.png') %>" class="rank-image" alt="3rd">';
     }
-
+    var graphColor = '';
+    if (index === 0) {
+      graphColor = 'graph-color-1st';
+    } else if (index === 1) {
+      graphColor = 'graph-color-2nd';
+    } else if (index === 2) {
+      graphColor = 'graph-color-3rd';
+    } else {
+      graphColor = 'graph-color-other';
+    }
 
     // containerに追加
     document.querySelector('#show-container').insertAdjacentHTML('beforeend', `
@@ -96,8 +116,9 @@
     </a>
   
     <div class="graf-bar-bg">
-      <div class="graf-bar" id="${variable.name}"><span>${variable.count}</span></div>
+      <div class="graf-bar ${graphColor}" id="${variable.name}"><span>${variable.count}</span></div>
     </div>
+
   </div>`);
     
     // widthを指定

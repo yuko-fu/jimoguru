@@ -19,8 +19,17 @@ class ShopsController < ApplicationController
     end
     @category_names = Category.pluck(:name)
     @shop_vote_counts = Shop.joins(:votes).group(:shop_id).count
+    @shop_prefecture = [ "北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県",
+    "茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県",
+    "新潟県","富山県","石川県","福井県","山梨県","長野県",
+    "岐阜県","静岡県","愛知県","三重県",
+    "滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県",
+    "鳥取県","島根県","岡山県","広島県","山口県",
+    "徳島県","香川県","愛媛県","高知県",
+    "福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県",
+    "沖縄県" ] & Shop.pluck(:prefecture).uniq
+      
     @shops = @shops.order(latitude: :desc).page(params[:page]).per(10)
-    
   end
   # GET /shops/1 or /shops/1.json
   def show
@@ -36,17 +45,14 @@ class ShopsController < ApplicationController
     
   end
   
-  # GET /shops/new
   def new
     @shop = Shop.new
   end
 
-  # GET /shops/1/edit
   def edit
     @shop = Shop.find(params[:id])
   end
 
-  # POST /shops or /shops.json
   def create
     @shop = Shop.new(shop_params)
 
@@ -62,12 +68,11 @@ class ShopsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /shops/1 or /shops/1.json
   def update
     
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }
+        format.html { redirect_to shop_url(@shop), notice: "ショップの編集しました" }
         format.json { render :show, category: :ok, location: @shop }
       else
         format.html { render :edit, category: :unprocessable_entity }
@@ -76,7 +81,6 @@ class ShopsController < ApplicationController
     end
   end
 
-  # DELETE /shops/1 or /shops/1.json
   def destroy
     @shop.destroy
 
@@ -87,12 +91,11 @@ class ShopsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    
     def set_shop
       @shop = Shop.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def shop_params
       params.require(:shop).permit(:name, :prefecture, :address, :category_id)
     end

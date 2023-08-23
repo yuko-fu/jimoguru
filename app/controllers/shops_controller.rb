@@ -31,7 +31,7 @@ class ShopsController < ApplicationController
       
     @shops = @shops.order(latitude: :desc).page(params[:page]).per(10)
   end
-  # GET /shops/1 or /shops/1.json
+  
   def show
     
     gon.shops = Shop.find(params[:id])

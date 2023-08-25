@@ -39,4 +39,16 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Shop' do
+    edit do
+      field :name
+      field :prefecture
+      field :address
+      field :latitude 
+      field :longitude 
+      field :category
+      field :votes
+    end
+  end
 end
